@@ -1,3 +1,0 @@
-class ArticleRepo {
-  void getArticle() {}
-}
