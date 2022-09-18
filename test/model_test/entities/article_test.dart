@@ -6,7 +6,7 @@ import '../../test_sources/file_reader.dart';
 
 void main() {
   group('testing for source object', () {
-    Source tSource = const Source('CNN', 'CNN');
+    Source tSource = Source('CNN', 'CNN');
 
     test('change data from json to Source type', () {
       final Map<String, dynamic> data = json.decode(readFile('tSource.json'));
@@ -16,7 +16,7 @@ void main() {
   });
 
   group('tesing for articles object', () {
-    Source tSource = const Source('CNN', 'CNN');
+    Source tSource = Source('CNN', 'CNN');
     Articles tArticles = Articles(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
     test('change data from json to articles object', () {
@@ -27,7 +27,7 @@ void main() {
   });
 
   group('testing for article object', () {
-    Source tSource = const Source('CNN', 'CNN');
+    Source tSource = Source('CNN', 'CNN');
     Articles tArticles = Articles(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
     Article tArticle = Article('ok', 1, [tArticles]);
