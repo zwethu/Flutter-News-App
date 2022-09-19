@@ -37,6 +37,10 @@ class AppRouter extends _i2.RootStackRouter {
     ArticleScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.ArticleScreen());
+    },
+    SearchScreen.name: (routeData) {
+      return _i2.MaterialPageX<dynamic>(
+          routeData: routeData, child: const _i1.SearchScreen());
     }
   };
 
@@ -45,7 +49,8 @@ class AppRouter extends _i2.RootStackRouter {
         _i2.RouteConfig(SplashScreen.name, path: '/'),
         _i2.RouteConfig(NewsScreen.name, path: '/news-screen'),
         _i2.RouteConfig(FavouritesScreen.name, path: '/favourites-screen'),
-        _i2.RouteConfig(ArticleScreen.name, path: '/article-screen')
+        _i2.RouteConfig(ArticleScreen.name, path: '/article-screen'),
+        _i2.RouteConfig(SearchScreen.name, path: '/search-screen')
       ];
 }
 
@@ -80,4 +85,12 @@ class ArticleScreen extends _i2.PageRouteInfo<void> {
   const ArticleScreen() : super(ArticleScreen.name, path: '/article-screen');
 
   static const String name = 'ArticleScreen';
+}
+
+/// generated route for
+/// [_i1.SearchScreen]
+class SearchScreen extends _i2.PageRouteInfo<void> {
+  const SearchScreen() : super(SearchScreen.name, path: '/search-screen');
+
+  static const String name = 'SearchScreen';
 }

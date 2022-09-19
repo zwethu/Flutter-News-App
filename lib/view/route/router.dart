@@ -10,6 +10,7 @@ import 'routes.dart';
     AutoRoute(page: NewsScreen),
     AutoRoute(page: FavouritesScreen),
     AutoRoute(page: ArticleScreen),
+    AutoRoute(page: SearchScreen),
   ],
 )
 class $AppRouter {}
