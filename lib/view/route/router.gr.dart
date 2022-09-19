@@ -26,13 +26,9 @@ class AppRouter extends _i2.RootStackRouter {
       return _i2.MaterialPageX<dynamic>(
           routeData: routeData, child: const _i1.SplashScreen());
     },
-    NewsScreen.name: (routeData) {
+    HomeScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.NewsScreen());
-    },
-    FavouritesScreen.name: (routeData) {
-      return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.FavouritesScreen());
+          routeData: routeData, child: const _i1.HomeScreen());
     },
     ArticleScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
@@ -46,9 +42,8 @@ class AppRouter extends _i2.RootStackRouter {
 
   @override
   List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(SplashScreen.name, path: '/'),
-        _i2.RouteConfig(NewsScreen.name, path: '/news-screen'),
-        _i2.RouteConfig(FavouritesScreen.name, path: '/favourites-screen'),
+        _i2.RouteConfig(SplashScreen.name, path: '/splash-screen'),
+        _i2.RouteConfig(HomeScreen.name, path: '/'),
         _i2.RouteConfig(ArticleScreen.name, path: '/article-screen'),
         _i2.RouteConfig(SearchScreen.name, path: '/search-screen')
       ];
@@ -57,26 +52,17 @@ class AppRouter extends _i2.RootStackRouter {
 /// generated route for
 /// [_i1.SplashScreen]
 class SplashScreen extends _i2.PageRouteInfo<void> {
-  const SplashScreen() : super(SplashScreen.name, path: '/');
+  const SplashScreen() : super(SplashScreen.name, path: '/splash-screen');
 
   static const String name = 'SplashScreen';
 }
 
 /// generated route for
-/// [_i1.NewsScreen]
-class NewsScreen extends _i2.PageRouteInfo<void> {
-  const NewsScreen() : super(NewsScreen.name, path: '/news-screen');
+/// [_i1.HomeScreen]
+class HomeScreen extends _i2.PageRouteInfo<void> {
+  const HomeScreen() : super(HomeScreen.name, path: '/');
 
-  static const String name = 'NewsScreen';
-}
-
-/// generated route for
-/// [_i1.FavouritesScreen]
-class FavouritesScreen extends _i2.PageRouteInfo<void> {
-  const FavouritesScreen()
-      : super(FavouritesScreen.name, path: '/favourites-screen');
-
-  static const String name = 'FavouritesScreen';
+  static const String name = 'HomeScreen';
 }
 
 /// generated route for

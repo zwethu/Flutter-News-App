@@ -6,17 +6,17 @@ part 'article.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Article extends Equatable {
-  final String status;
-  final int totalResults;
-  final List<Articles> articles;
-  const Article(
+  String? status;
+  int? totalResults;
+  List<Articles?> articles;
+  Article(
     this.status,
     this.totalResults,
     this.articles,
   );
 
   @override
-  List<Object> get props => [status, totalResults, articles];
+  List<Object?> get props => [status, totalResults, articles];
 
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
@@ -26,16 +26,16 @@ class Article extends Equatable {
 
 @JsonSerializable(explicitToJson: true)
 class Articles extends Equatable {
-  final Source source;
-  final String author;
-  final String title;
-  final String description;
-  final String url;
-  final String urlToImage;
-  final String publishedAt;
-  final String content;
+  Source? source;
+  String? author;
+  String? title;
+  String? description;
+  String? url;
+  String? urlToImage;
+  String? publishedAt;
+  String? content;
 
-  const Articles(
+  Articles(
     this.source,
     this.author,
     this.title,
@@ -47,7 +47,7 @@ class Articles extends Equatable {
   );
 
   @override
-  List<Object> get props => [
+  List<Object?> get props => [
         source,
         author,
         title,
@@ -66,12 +66,12 @@ class Articles extends Equatable {
 
 @JsonSerializable(explicitToJson: true)
 class Source extends Equatable {
-  final String id;
-  final String name;
-  const Source(this.id, this.name);
+  String? id;
+  String? name;
+  Source(this.id, this.name);
 
   @override
-  List<Object> get props => [id, name];
+  List<Object?> get props => [id, name];
 
   factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 

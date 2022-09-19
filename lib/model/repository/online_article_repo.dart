@@ -7,7 +7,7 @@ class OnlineArticleRepo extends ArticleRepo {
   final http.Client client;
   OnlineArticleRepo(this.client);
   @override
-  Future<List<Articles>> getArticles() async {
+  Future<List<Articles?>> getArticles() async {
     Article article = await NewsApiService(client).fetchArticle();
     return article.articles;
   }
