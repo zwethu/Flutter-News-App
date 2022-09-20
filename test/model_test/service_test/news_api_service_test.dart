@@ -21,7 +21,7 @@ void main() {
       when(client.get(any)).thenAnswer(
         (_) async => http.Response(readFile('tArticle.json'), 200),
       );
-      final result = await service.fetchArticle();
+      final result = await service.fetchArticle('topic');
       expect(result, isA<Article>());
       verify(client.get(any));
       expect(
@@ -38,7 +38,7 @@ void main() {
     test('return exception when api response is not 200', () async {
       when(client.get(any)).thenAnswer(
           (realInvocation) async => http.Response('Not founded', 404));
-      expect(service.fetchArticle(), throwsException);
+      expect(service.fetchArticle('topic'), throwsException);
     });
   });
 }

@@ -7,11 +7,9 @@ import 'package:news_app/model/service/api_service.dart';
 class NewsApiService extends ApiService {
   NewsApiService(super.client);
 
-  static const String apiKey = "127eda8cc5c148b2a7392a2504e0d56e";
-  final String url =
-      'https://newsapi.org/v2/top-headlines?country=us&apiKey=$apiKey';
 
-  Future<Article> fetchArticle() async {
+  Future<Article> fetchArticle(String topic) async {
+    final String url = 'https://newsapi.org/v2/everything?q=$topic&apiKey=127eda8cc5c148b2a7392a2504e0d56e';
     Uri uri = Uri.parse(Uri.encodeFull(url));
     http.Response response = await client.get(uri);
     try {

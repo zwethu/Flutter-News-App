@@ -23,27 +23,25 @@ class _NewsScreenState extends State<NewsScreen>
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            const CustomAppBar(),
-            TabBarTitle(controller: controller),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: MediaQuery.of(context).size.height,
-              child: TabBarView(
-                controller: controller,
-                children: const [
-                  CustomNewsTab(),
-                  CustomNewsTab(),
-                  CustomNewsTab(),
-                  CustomNewsTab(),
-                  CustomNewsTab(),
-                ],
-              ),
+      child: Column(
+        children: [
+          const CustomAppBar(),
+          TabBarTitle(controller: controller),
+          const SizedBox(height: 16),
+          Expanded(
+            child: TabBarView(
+              physics: const BouncingScrollPhysics(),
+              controller: controller,
+              children: const [
+                CustomNewsTab(topic: 'trending'),
+                CustomNewsTab(topic: 'entertainment'),
+                CustomNewsTab(topic: 'health'),
+                CustomNewsTab(topic: 'sports'),
+                CustomNewsTab(topic: 'programming'),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -62,7 +60,7 @@ class TabBarTitle extends StatelessWidget {
     return TabBar(
       isScrollable: true,
       labelColor: themeColor,
-      labelStyle: titleStyle,
+      labelStyle: topicStyle,
       unselectedLabelColor: inactiveColor,
       unselectedLabelStyle: titleStyle,
       indicatorColor: Colors.transparent,

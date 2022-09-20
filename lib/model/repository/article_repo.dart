@@ -1,3 +1,3 @@
 abstract class ArticleRepo {
-  void getArticles() {}
+  void getArticles(String topic) {}
 }

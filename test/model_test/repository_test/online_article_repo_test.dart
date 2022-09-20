@@ -13,15 +13,26 @@ void main() {
   MockOnlineArticleRepo repo = MockOnlineArticleRepo();
   group('get Article from news api service', () {
     test('', () async {
-      when(repo.getArticles()).thenAnswer(
+      when(repo.getArticles(any)).thenAnswer(
         (_) async => Article.fromJson(
           json.decode(
             readFile('tArticle.json'),
           ),
         ).articles,
       );
-      final result = await repo.getArticles();
-      expect(result, isA<List<Articles>>());
+      final result = await repo.getArticles('topic');
+      expect(
+        result,
+        equals(
+          [
+            Articles.fromJson(
+              json.decode(
+                readFile('tArticles.json'),
+              ),
+            ),
+          ],
+        ),
+      );
     });
   });
 }

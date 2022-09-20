@@ -11,13 +11,15 @@ part 'online_article_bloc_state.dart';
 
 class OnlineArticleBloc
     extends Bloc<OnlineArticleBlocEvent, OnlineArticleBlocState> {
+ 
   OnlineArticleBloc() : super(OnlineArticleBlocInitialState()) {
     on<GetOnlineArticleBlocEvent>((event, emit) async {
       http.Client client = http.Client();
       OnlineArticleRepo repo = OnlineArticleRepo(client);
       emit(OnlineArticleBlocLoadingState());
+      
       try {
-        List<Articles?> articleList = await repo.getArticles();
+        List<Articles?> articleList = await repo.getArticles(event.topic);
 
         emit(OnlineArticleBlocLoadedState(articleList));
       } catch (e) {

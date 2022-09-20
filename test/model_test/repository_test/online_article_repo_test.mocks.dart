@@ -39,8 +39,9 @@ class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
           returnValue: _FakeClient_0(this, Invocation.getter(#client)))
       as _i2.Client);
   @override
-  _i4.Future<List<_i5.Articles?>> getArticles() => (super.noSuchMethod(
-          Invocation.method(#getArticles, []),
-          returnValue: _i4.Future<List<_i5.Articles?>>.value(<_i5.Articles?>[]))
-      as _i4.Future<List<_i5.Articles?>>);
+  _i4.Future<List<_i5.Articles?>> getArticles(String? topic) =>
+      (super.noSuchMethod(Invocation.method(#getArticles, [topic]),
+              returnValue:
+                  _i4.Future<List<_i5.Articles?>>.value(<_i5.Articles?>[]))
+          as _i4.Future<List<_i5.Articles?>>);
 }
