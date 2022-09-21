@@ -14,10 +14,17 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
+
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 5, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 
   @override
@@ -30,14 +37,24 @@ class _NewsScreenState extends State<NewsScreen>
           const SizedBox(height: 16),
           Expanded(
             child: TabBarView(
-              physics: const BouncingScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               controller: controller,
               children: const [
-                CustomNewsTab(topic: 'trending'),
-                CustomNewsTab(topic: 'entertainment'),
-                CustomNewsTab(topic: 'health'),
-                CustomNewsTab(topic: 'sports'),
-                CustomNewsTab(topic: 'programming'),
+                CustomNewsTab(
+                  topic: 'trending',
+                ),
+                CustomNewsTab(
+                  topic: 'entertainment',
+                ),
+                CustomNewsTab(
+                  topic: 'health',
+                ),
+                CustomNewsTab(
+                  topic: 'sports',
+                ),
+                CustomNewsTab(
+                  topic: 'programming',
+                ),
               ],
             ),
           ),
