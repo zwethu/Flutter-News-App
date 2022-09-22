@@ -14,6 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i2;
 import 'package:flutter/material.dart' as _i3;
 
+import '../../model/entities/article.dart' as _i4;
 import 'routes.dart' as _i1;
 
 class AppRouter extends _i2.RootStackRouter {
@@ -31,8 +32,10 @@ class AppRouter extends _i2.RootStackRouter {
           routeData: routeData, child: const _i1.HomeScreen());
     },
     ArticleScreen.name: (routeData) {
+      final args = routeData.argsAs<ArticleScreenArgs>();
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.ArticleScreen());
+          routeData: routeData,
+          child: _i1.ArticleScreen(key: args.key, article: args.article));
     },
     SearchScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
@@ -67,10 +70,26 @@ class HomeScreen extends _i2.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i1.ArticleScreen]
-class ArticleScreen extends _i2.PageRouteInfo<void> {
-  const ArticleScreen() : super(ArticleScreen.name, path: '/article-screen');
+class ArticleScreen extends _i2.PageRouteInfo<ArticleScreenArgs> {
+  ArticleScreen({_i3.Key? key, required _i4.Articles article})
+      : super(ArticleScreen.name,
+            path: '/article-screen',
+            args: ArticleScreenArgs(key: key, article: article));
 
   static const String name = 'ArticleScreen';
+}
+
+class ArticleScreenArgs {
+  const ArticleScreenArgs({this.key, required this.article});
+
+  final _i3.Key? key;
+
+  final _i4.Articles article;
+
+  @override
+  String toString() {
+    return 'ArticleScreenArgs{key: $key, article: $article}';
+  }
 }
 
 /// generated route for

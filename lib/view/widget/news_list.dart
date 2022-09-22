@@ -1,7 +1,10 @@
+import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
+import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 
 class NewsList extends StatelessWidget {
@@ -17,34 +20,43 @@ class NewsList extends StatelessWidget {
       physics: const BouncingScrollPhysics(),
       itemCount: state.articleList.length,
       itemBuilder: (context, index) {
-        return Container(
-          decoration: newsBoxDecoration,
-          height: 150,
-          margin: const EdgeInsets.symmetric(
-            vertical: padding1x,
-            horizontal: padding2x,
-          ),
-          child: Row(
-            children: [
-              ImageFrame(
-                state: state,
-                index: index,
+        return GestureDetector(
+          onTap: () {
+            AutoRouter.of(context).push(
+              ArticleScreen(
+                article: state.articleList[index]!,
               ),
-              Expanded(
-                child: Column(
-                  children: [
-                    TitleText(
-                      state: state,
-                      index: index,
-                    ),
-                    AuthorText(
-                      state: state,
-                      index: index,
-                    ),
-                  ],
+            );
+          },
+          child: Container(
+            decoration: newsBoxDecoration,
+            height: 150,
+            margin: const EdgeInsets.symmetric(
+              vertical: padding1x,
+              horizontal: padding2x,
+            ),
+            child: Row(
+              children: [
+                ImageFrame(
+                  state: state,
+                  index: index,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: Column(
+                    children: [
+                      TitleText(
+                        state: state,
+                        index: index,
+                      ),
+                      AuthorText(
+                        state: state,
+                        index: index,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },

@@ -35,7 +35,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
         } else if (state is OnlineArticleBlocLoadedState) {
           return NewsList(state: state);
         } else if (state is OnlineArticleBlocErrorState) {
-          return const Placeholder();
+          return const NoInternetWidget();
         } else if (state is OnlineArticleBlocNoConnectionState) {
           return const NoInternetWidget();
         } else {
