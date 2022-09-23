@@ -35,7 +35,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
         } else if (state is OnlineArticleBlocLoadedState) {
           return NewsList(state: state);
         } else if (state is OnlineArticleBlocErrorState) {
-          return const NoInternetWidget();
+          return const LoadingAnimation();
         } else if (state is OnlineArticleBlocNoConnectionState) {
           return const NoInternetWidget();
         } else {
@@ -62,17 +62,15 @@ class _LoadingAnimationState extends State<LoadingAnimation>
   void initState() {
     super.initState();
     animController = AnimationController(
-      duration: const Duration(seconds: 2),
       vsync: this,
+      duration: const Duration(
+        seconds: 2,
+      ),
     );
     animation = Tween<double>(
       begin: 0,
       end: math.pi,
     ).animate(animController)
-      ..addListener(() {
-        // Empty setState because the updated value is already in the animation field
-        setState(() {});
-      })
       ..addStatusListener((status) {
         if (status == AnimationStatus.completed) {
           animController.reverse();
@@ -93,21 +91,26 @@ class _LoadingAnimationState extends State<LoadingAnimation>
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: animation.value,
-      child: Center(
-        child: isEmpty
-            ? const Icon(
-                Icons.hourglass_top_rounded,
-                size: 35,
-                color: themeColor,
-              )
-            : const Icon(
-                Icons.hourglass_bottom_rounded,
-                size: 35,
-                color: themeColor,
-              ),
-      ),
+    return AnimatedBuilder(
+      animation: animation,
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: animation.value,
+          child: Center(
+            child: isEmpty
+                ? const Icon(
+                    Icons.hourglass_top_rounded,
+                    size: 35,
+                    color: themeColor,
+                  )
+                : const Icon(
+                    Icons.hourglass_bottom_rounded,
+                    size: 35,
+                    color: themeColor,
+                  ),
+          ),
+        );
+      },
     );
   }
 }
@@ -118,7 +121,11 @@ class NoInternetWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Center(
-      child: Icon(Icons.signal_wifi_bad_rounded,size: 35,color:themeColor,),
+      child: Icon(
+        Icons.signal_wifi_bad_rounded,
+        size: 35,
+        color: themeColor,
+      ),
     );
   }
 }

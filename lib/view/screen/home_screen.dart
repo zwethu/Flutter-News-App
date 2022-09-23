@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/view/screen/favourites_screen.dart';
-import 'package:news_app/view_model/bloc/provider/navigation_bar_provider.dart';
 import 'package:provider/provider.dart';
+import '../../view_model/provider/navigation_bar_provider.dart';
 import 'news_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,7 +26,9 @@ class _HomeScreenState extends State<HomeScreen> {
         return Consumer<NavigationBarProvider>(
             builder: (context, provider, child) {
           return Scaffold(
-            body: Container(child: pages[provider.currentIndex],),
+            body: Container(
+              child: pages[provider.currentIndex],
+            ),
             bottomNavigationBar: BottomNavigationBar(
               onTap: (value) {
                 provider.setIndex(value);
