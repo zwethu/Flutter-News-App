@@ -33,6 +33,7 @@ void main() {
           ],
         ),
       );
+      verify(repo.getArticles('topic')).called(1);
     });
   });
 }

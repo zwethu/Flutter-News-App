@@ -31,17 +31,34 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
         } else if (state is OnlineArticleBlocLoadingState) {
           return const LoadingAnimation();
         } else if (state is OnlineArticleBlocEmptyState) {
-          return const Placeholder(color: Colors.green);
+          return const Placeholder(color: Colors.red);
         } else if (state is OnlineArticleBlocLoadedState) {
           return NewsList(state: state);
-        } else if (state is OnlineArticleBlocErrorState) {
-          return const LoadingAnimation();
         } else if (state is OnlineArticleBlocNoConnectionState) {
           return const NoInternetWidget();
+        } else if (state is OnlineArticleBlocErrorState) {
+          return const ErrorWidget();
         } else {
           return const LoadingAnimation();
         }
       },
+    );
+  }
+}
+
+class ErrorWidget extends StatelessWidget {
+  const ErrorWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Icon(
+        Icons.error_outline,
+        size: 35,
+        color: themeColor,
+      ),
     );
   }
 }

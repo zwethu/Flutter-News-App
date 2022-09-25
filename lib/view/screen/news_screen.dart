@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
+import 'package:http/http.dart' as http;
+import 'package:news_app/model/repository/online_article_repo.dart';
 import 'package:news_app/view/widget/custom_news_tab.dart';
+import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class NewsScreen extends StatefulWidget {
   const NewsScreen({Key? key}) : super(key: key);
@@ -14,7 +18,7 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen>
     with SingleTickerProviderStateMixin {
   late TabController controller;
-
+  OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
   @override
   void initState() {
     super.initState();
@@ -29,7 +33,9 @@ class _NewsScreenState extends State<NewsScreen>
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return BlocProvider(
+      create: (context) => OnlineArticleBloc(repo),
+      child: SafeArea(
       child: Column(
         children: [
           const CustomAppBar(),
@@ -60,6 +66,7 @@ class _NewsScreenState extends State<NewsScreen>
           ),
         ],
       ),
+    ),
     );
   }
 }

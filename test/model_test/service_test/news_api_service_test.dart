@@ -23,7 +23,7 @@ void main() {
       );
       final result = await service.fetchArticle('topic');
       expect(result, isA<Article>());
-      verify(client.get(any));
+      verify(client.get(any)).called(1);
       expect(
         result,
         equals(
