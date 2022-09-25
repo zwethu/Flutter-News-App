@@ -33,6 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: (value) {
                 provider.setIndex(value);
               },
+             
               selectedItemColor: themeColor,
               unselectedItemColor: inactiveColor,
               currentIndex: provider.currentIndex,

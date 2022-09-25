@@ -14,7 +14,7 @@ import 'news_api_service_test.mocks.dart' as mock;
 void main() {
   mock.MockClient client;
   NewsApiService service;
-  group('fetch data from api\n', () {
+  group('fetch data from api - ', () {
     client = mock.MockClient();
     service = NewsApiService(client);
     test('return article object when api response is 200\n', () async {

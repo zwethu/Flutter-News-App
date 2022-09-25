@@ -11,7 +11,7 @@ import 'online_article_repo_test.mocks.dart';
 @GenerateMocks([OnlineArticleRepo])
 void main() {
   MockOnlineArticleRepo repo = MockOnlineArticleRepo();
-  group('get Article from news api service', () {
+  group('get Article from news api service - ', () {
     test('', () async {
       when(repo.getArticles(any)).thenAnswer(
         (_) async => Article.fromJson(

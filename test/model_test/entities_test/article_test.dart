@@ -5,7 +5,7 @@ import 'package:news_app/model/entities/article.dart';
 import '../../test_sources/file_reader.dart';
 
 void main() {
-  group('testing for source object', () {
+  group('testing for source object - ', () {
     Source tSource = Source('CNN', 'CNN');
 
     test('change data from json to Source type', () {
@@ -15,7 +15,7 @@ void main() {
     });
   });
 
-  group('tesing for articles object', () {
+  group('tesing for articles object - ', () {
     Source tSource = Source('CNN', 'CNN');
     Articles tArticles = Articles(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
@@ -26,7 +26,7 @@ void main() {
     });
   });
 
-  group('testing for article object', () {
+  group('testing for article object - ', () {
     Source tSource = Source('CNN', 'CNN');
     Articles tArticles = Articles(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');

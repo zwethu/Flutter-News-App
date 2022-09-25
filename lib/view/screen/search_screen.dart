@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/colors.dart';
+import 'package:news_app/core/constants.dart';
+import 'package:news_app/core/styles.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -10,6 +13,15 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          children: [
+            
+          ],
+        ),
+      ),
+    );
   }
 }
+
