@@ -8,7 +8,7 @@ import 'package:news_app/model/entities/article.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleScreen extends StatefulWidget {
-  final Articles article;
+  final Articles article; // article is required to show data on UI
   const ArticleScreen({Key? key, required this.article}) : super(key: key);
 
   @override
@@ -16,15 +16,23 @@ class ArticleScreen extends StatefulWidget {
 }
 
 class _ArticleScreenState extends State<ArticleScreen> {
-  String date = '';
-  String time = '';
-  bool isMark = false;
+  String date = ''; // article published date
+  String time = ''; // article published time
+  bool isMark = false; // boolean for is the articles is bookmarked or not
   @override
   void initState() {
     super.initState();
-    String temp = widget.article.publishedAt!.replaceAll('Z', ' ');
-    temp = temp.replaceAll('T', ' ');
-    List<String> tempList = temp.split(' ');
+    convertDateAndTime();
+  }
+
+  void convertDateAndTime() {
+    // publishedAt string is the mix of date and time. Example - 2022-09-07T15:58:32Z
+    // so nned to remove T and Z form the string
+    String temp = widget.article.publishedAt!
+        .replaceAll('Z', ' '); // replace T from string with space
+    temp = temp.replaceAll('T', ' '); // replace Z from string with space
+    List<String> tempList = temp.split(' '); // then split string with space
+    //first part is date and second is time
     date = tempList[0];
     time = tempList[1];
   }
@@ -36,19 +44,21 @@ class _ArticleScreenState extends State<ArticleScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const CustomAppbar(),
+              const CustomAppbar(), // appbar with back button and bookmark button
               const Divider(
                 thickness: 1,
                 color: themeColor,
               ),
-              TitleWidget(widget: widget),
-              ImageFrame(widget: widget),
+              TitleWidget(widget: widget), // News title
+              ImageFrame(widget: widget), // Image
+              // show date and time in row
               DatetimeWidget(
                 date: date,
                 time: time,
               ),
-              DescriptionWidget(widget: widget),
-              LinkWidget(url: widget.article.url ?? ''),
+              DescriptionWidget(widget: widget), // news description text
+              LinkWidget(
+                  url: widget.article.url ?? ''), // link to the full article
             ],
           ),
         ),
@@ -57,8 +67,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
   }
 }
 
+//link to see the full article
 class LinkWidget extends StatelessWidget {
-  final String url;
+  final String url; // url is required to follow the link
   const LinkWidget({
     Key? key,
     required this.url,
@@ -88,13 +99,15 @@ class LinkWidget extends StatelessWidget {
     );
   }
 
+// this will make the device open a url in browser
   Future<void> followLink(String input) async {
     if (!await launchUrl(Uri.parse(input))) {
       throw 'Could not launch $input';
-    }
+    } // throw error if the url is not available or empty
   }
 }
 
+// description text of the article
 class DescriptionWidget extends StatelessWidget {
   const DescriptionWidget({
     Key? key,
@@ -108,14 +121,16 @@ class DescriptionWidget extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(padding2x),
       child: Text(
-        '     ${widget.article.description}',
+        '     ${widget.article.description}', // add space for the start of paragraph
         style: titleStyle,
-        maxLines: (widget.article.description!.length / 40).round() + 2,
+        maxLines: (widget.article.description!.length / 40).round() +
+            2, // calculate max line to override textoverflow
       ),
     );
   }
 }
 
+//show date and time in the same row
 class DatetimeWidget extends StatelessWidget {
   const DatetimeWidget({
     Key? key,
@@ -167,6 +182,7 @@ class DatetimeWidget extends StatelessWidget {
   }
 }
 
+//article title widget
 class TitleWidget extends StatelessWidget {
   const TitleWidget({
     Key? key,
@@ -191,6 +207,7 @@ class TitleWidget extends StatelessWidget {
   }
 }
 
+// custom appbar with backbutton and bookmark button
 class CustomAppbar extends StatelessWidget {
   const CustomAppbar({
     Key? key,
@@ -206,8 +223,8 @@ class CustomAppbar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: const [
-          ButtonBack(),
-          BookmarkButton(),
+          ButtonBack(), //back button
+          BookmarkButton(), // bookmark button
         ],
       ),
     );
@@ -252,6 +269,7 @@ class ButtonBack extends StatelessWidget {
   }
 }
 
+//Image
 class ImageFrame extends StatelessWidget {
   const ImageFrame({
     Key? key,
@@ -270,12 +288,15 @@ class ImageFrame extends StatelessWidget {
       child: Image.network(
         widget.article.urlToImage ?? '',
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.width - 32,
+        height: MediaQuery.of(context).size.width -
+            32, //subtract (left padding + right padding) to get the same value of width
         fit: BoxFit.cover,
+        //show loading animation when image is loading
         loadingBuilder: (context, child, loadingProgress) {
           if (loadingProgress == null) return child;
           return const ImageLoadingAnimation();
         },
+        //show error widget on error
         errorBuilder: (context, error, stackTrace) {
           return const ImageErrorWidget();
         },
@@ -284,6 +305,7 @@ class ImageFrame extends StatelessWidget {
   }
 }
 
+//show the same size of container with Error Icon
 class ImageErrorWidget extends StatelessWidget {
   const ImageErrorWidget({Key? key}) : super(key: key);
 
@@ -304,6 +326,7 @@ class ImageErrorWidget extends StatelessWidget {
   }
 }
 
+//show custom loading animation with sand glass
 class ImageLoadingAnimation extends StatefulWidget {
   const ImageLoadingAnimation({Key? key}) : super(key: key);
 
@@ -319,26 +342,31 @@ class _ImageLoadingAnimationState extends State<ImageLoadingAnimation>
   @override
   void initState() {
     super.initState();
+    // initialize animationcontroller
     animController = AnimationController(
       vsync: this,
       duration: const Duration(
         seconds: 2,
       ),
     );
+    //begin at zero and end at Pi value to get 180 degree
     animation = Tween<double>(
       begin: 0,
       end: math.pi,
     ).animate(animController)
       ..addStatusListener((status) {
+        // reverse the animation when its completed
         if (status == AnimationStatus.completed) {
           animController.reverse();
           isEmpty = !isEmpty;
-        } else if (status == AnimationStatus.dismissed) {
+        }
+        // do the animation again when its finished
+        else if (status == AnimationStatus.dismissed) {
           animController.forward();
           isEmpty = !isEmpty;
         }
       });
-    animController.forward();
+    animController.forward();// initialize the animation
   }
 
   @override
@@ -360,6 +388,7 @@ class _ImageLoadingAnimationState extends State<ImageLoadingAnimation>
             return Transform.rotate(
               angle: animation.value,
               child: Center(
+                // show icon according to gravity logic
                 child: isEmpty
                     ? const Icon(
                         Icons.hourglass_top_rounded,

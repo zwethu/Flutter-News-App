@@ -6,8 +6,11 @@ import 'package:news_app/view/route/router.gr.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
+  // initialize hive
   await Hive.initFlutter();
+  // register hive adapter
   Hive.registerAdapter(ArticleBoxAdapter());
+  // open hive
   await Hive.openBox<ArticleBox>(articleBox);
   runApp(MyApp());
 }

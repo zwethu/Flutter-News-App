@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             bottomNavigationBar: BottomNavigationBar(
               onTap: (value) {
-                provider.setIndex(value);
+                provider.setIndex(value);//tap to change Navigation bar
               },
              
               selectedItemColor: themeColor,
@@ -47,10 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<BottomNavigationBarItem> items = const [
+    //News Bar
     BottomNavigationBarItem(
       icon: Icon(Icons.newspaper_outlined),
       label: '',
     ),
+    //Book mark bar
     BottomNavigationBarItem(
       icon: Icon(Icons.bookmark_outlined),
       label: '',

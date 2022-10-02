@@ -19,7 +19,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
     super.initState();
     BlocProvider.of<OnlineArticleBloc>(context).add(
       GetOnlineArticleBlocEvent(widget.topic),
-    );
+    ); // add get onlne article bloc event to online article bloc
   }
 
   @override
@@ -27,18 +27,25 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
     return BlocBuilder<OnlineArticleBloc, OnlineArticleBlocState>(
       builder: (context, state) {
         if (state is OnlineArticleBlocInitialState) {
+          //return loading animtion at initial state
           return const LoadingAnimation();
         } else if (state is OnlineArticleBlocLoadingState) {
+          //return loading animation at loading state
           return const LoadingAnimation();
         } else if (state is OnlineArticleBlocEmptyState) {
+          // return placeholder when data is empty (empty state)
           return const Placeholder(color: Colors.red);
         } else if (state is OnlineArticleBlocLoadedState) {
+          // return list of news when loading is completed(loaded)
           return NewsList(state: state);
         } else if (state is OnlineArticleBlocNoConnectionState) {
+          //return connection error widget when there is no internet
           return const NoInternetWidget();
         } else if (state is OnlineArticleBlocErrorState) {
+          //return error widget when error occcured
           return const ErrorWidget();
         } else {
+          // return loading animation for unexpected condition
           return const LoadingAnimation();
         }
       },
@@ -46,6 +53,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
   }
 }
 
+//error widget with error icon
 class ErrorWidget extends StatelessWidget {
   const ErrorWidget({
     Key? key,
@@ -63,6 +71,7 @@ class ErrorWidget extends StatelessWidget {
   }
 }
 
+// custom loadinh animation with sand glass
 class LoadingAnimation extends StatefulWidget {
   const LoadingAnimation({Key? key}) : super(key: key);
 
@@ -78,26 +87,31 @@ class _LoadingAnimationState extends State<LoadingAnimation>
   @override
   void initState() {
     super.initState();
+    // initialize animationcontroller
     animController = AnimationController(
       vsync: this,
       duration: const Duration(
         seconds: 2,
       ),
     );
+     //begin at zero and end at Pi value to get 180 degree
     animation = Tween<double>(
       begin: 0,
       end: math.pi,
     ).animate(animController)
       ..addStatusListener((status) {
+         // reverse the animation when its completed
         if (status == AnimationStatus.completed) {
           animController.reverse();
           isEmpty = !isEmpty;
-        } else if (status == AnimationStatus.dismissed) {
+        }
+        // do the animation again when its finished 
+        else if (status == AnimationStatus.dismissed) {
           animController.forward();
           isEmpty = !isEmpty;
         }
       });
-    animController.forward();
+    animController.forward();// initialize the animation
   }
 
   @override
@@ -114,6 +128,7 @@ class _LoadingAnimationState extends State<LoadingAnimation>
         return Transform.rotate(
           angle: animation.value,
           child: Center(
+              // show icon according to gravity logic
             child: isEmpty
                 ? const Icon(
                     Icons.hourglass_top_rounded,
@@ -132,6 +147,7 @@ class _LoadingAnimationState extends State<LoadingAnimation>
   }
 }
 
+//show no internet widget
 class NoInternetWidget extends StatelessWidget {
   const NoInternetWidget({Key? key}) : super(key: key);
 

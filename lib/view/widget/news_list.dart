@@ -16,6 +16,7 @@ class NewsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      // scroll effect from IOS
       physics: const BouncingScrollPhysics(),
       itemCount: state.articleList.length,
       itemBuilder: (context, index) {
@@ -25,7 +26,7 @@ class NewsList extends StatelessWidget {
               ArticleScreen(
                 article: state.articleList[index]!,
               ),
-            );
+            ); // navigate to Article screen
           },
           child: Container(
             decoration: newsBoxDecoration,
@@ -36,6 +37,7 @@ class NewsList extends StatelessWidget {
             ),
             child: Row(
               children: [
+                // image
                 ImageFrame(
                   state: state,
                   index: index,
@@ -43,10 +45,12 @@ class NewsList extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [
+                      //label
                       TitleText(
                         state: state,
                         index: index,
                       ),
+                      //author
                       AuthorText(
                         state: state,
                         index: index,
@@ -136,6 +140,7 @@ class ImageFrame extends StatelessWidget {
   }
 }
 
+// image error widget with error icon
 class ImageErrorWidget extends StatelessWidget {
   const ImageErrorWidget({
     Key? key,
@@ -158,6 +163,7 @@ class ImageErrorWidget extends StatelessWidget {
   }
 }
 
+// show normal circular progress indicator with sizedbox
 class ImageLoadingWidget extends StatelessWidget {
   const ImageLoadingWidget({
     Key? key,

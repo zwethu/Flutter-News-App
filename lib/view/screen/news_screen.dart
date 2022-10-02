@@ -17,7 +17,7 @@ class NewsScreen extends StatefulWidget {
   State<NewsScreen> createState() => _NewsScreenState();
 }
 
-class _NewsScreenState extends State<NewsScreen>
+class _NewsScreenState extends State<NewsScreen> 
     with SingleTickerProviderStateMixin {
   late TabController controller;
   OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
@@ -40,12 +40,12 @@ class _NewsScreenState extends State<NewsScreen>
       child: SafeArea(
         child: Column(
           children: [
-            const CustomAppBar(),
-            TabBarTitle(controller: controller),
+            const CustomAppBar(), // app bar with news logo and search button
+            TabBarTitle(controller: controller), // tab bar menu
             const SizedBox(height: 16),
             Expanded(
               child: TabBarView(
-                physics: const NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),// disable moving tab by swiping the tab bar view
                 controller: controller,
                 children: const [
                   CustomNewsTab(
@@ -73,6 +73,7 @@ class _NewsScreenState extends State<NewsScreen>
   }
 }
 
+// tab bar menu
 class TabBarTitle extends StatelessWidget {
   const TabBarTitle({
     Key? key,
@@ -103,6 +104,7 @@ class TabBarTitle extends StatelessWidget {
   }
 }
 
+ // custom app bar with news logo and search button
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     Key? key,
@@ -123,7 +125,7 @@ class CustomAppBar extends StatelessWidget {
             onPressed: () {
               AutoRouter.of(context).push(
                 const SearchScreen(),
-              );
+              );// navigate to Search screen
             },
             icon: const Icon(
               Icons.search_outlined,
