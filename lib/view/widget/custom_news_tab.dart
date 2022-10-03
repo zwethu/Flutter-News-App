@@ -46,7 +46,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
           return const ErrorWidget();
         } else {
           // return loading animation for unexpected condition
-          return const LoadingAnimation();
+          return const Placeholder();
         }
       },
     );
@@ -94,24 +94,24 @@ class _LoadingAnimationState extends State<LoadingAnimation>
         seconds: 2,
       ),
     );
-     //begin at zero and end at Pi value to get 180 degree
+    //begin at zero and end at Pi value to get 180 degree
     animation = Tween<double>(
       begin: 0,
       end: math.pi,
     ).animate(animController)
       ..addStatusListener((status) {
-         // reverse the animation when its completed
+        // reverse the animation when its completed
         if (status == AnimationStatus.completed) {
           animController.reverse();
           isEmpty = !isEmpty;
         }
-        // do the animation again when its finished 
+        // do the animation again when its finished
         else if (status == AnimationStatus.dismissed) {
           animController.forward();
           isEmpty = !isEmpty;
         }
       });
-    animController.forward();// initialize the animation
+    animController.forward(); // initialize the animation
   }
 
   @override
@@ -128,7 +128,7 @@ class _LoadingAnimationState extends State<LoadingAnimation>
         return Transform.rotate(
           angle: animation.value,
           child: Center(
-              // show icon according to gravity logic
+            // show icon according to gravity logic
             child: isEmpty
                 ? const Icon(
                     Icons.hourglass_top_rounded,

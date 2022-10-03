@@ -58,7 +58,8 @@ class _ArticleScreenState extends State<ArticleScreen> {
               ),
               DescriptionWidget(widget: widget), // news description text
               LinkWidget(
-                  url: widget.article.url ?? ''), // link to the full article
+                url: widget.article.url ?? '',
+              ), // link to the full article
             ],
           ),
         ),
@@ -366,7 +367,7 @@ class _ImageLoadingAnimationState extends State<ImageLoadingAnimation>
           isEmpty = !isEmpty;
         }
       });
-    animController.forward();// initialize the animation
+    animController.forward(); // initialize the animation
   }
 
   @override

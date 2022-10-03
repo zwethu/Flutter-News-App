@@ -40,7 +40,7 @@ class _NewsScreenState extends State<NewsScreen>
       child: SafeArea(
         child: Column(
           children: [
-            const CustomAppBar(), // app bar with news logo and search button
+            const CustomAppBar(), //app bar with news logo and search button
             TabBarTitle(controller: controller), // tab bar menu
             const SizedBox(height: 16),
             Expanded(
