@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:news_app/model/repository/online_article_repo.dart';
 import 'package:news_app/view/route/router.gr.dart';
+import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
+import 'package:http/http.dart' as http;
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,14 +25,18 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: ThemeData(
-        splashColor: Colors.transparent,
-        highlightColor: Colors.transparent,
-        hoverColor: Colors.transparent,
+    OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
+    return BlocProvider(
+      create: (context) => OnlineArticleBloc(repo),
+      child: MaterialApp.router(
+        theme: ThemeData(
+          splashColor: Colors.transparent,
+          highlightColor: Colors.transparent,
+          hoverColor: Colors.transparent,
+        ),
+        routerDelegate: _appRouter.delegate(),
+        routeInformationParser: _appRouter.defaultRouteParser(),
       ),
-      routerDelegate: _appRouter.delegate(),
-      routeInformationParser: _appRouter.defaultRouteParser(),
     );
   }
 }

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:math' as math;
+
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:news_app/core/colors.dart';
+import 'package:news_app/view/widget/custom_error_widget.dart';
+import 'package:news_app/view/widget/loading_animation.dart';
 import 'package:news_app/view/widget/news_list.dart';
+import 'package:news_app/view/widget/no_internet_widget.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 
 class CustomNewsTab extends StatefulWidget {
@@ -43,122 +45,12 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
           return const NoInternetWidget();
         } else if (state is OnlineArticleBlocErrorState) {
           //return error widget when error occcured
-          return const ErrorWidget();
+          return const CustomErrorWidget();
         } else {
           // return loading animation for unexpected condition
           return const Placeholder();
         }
       },
-    );
-  }
-}
-
-//error widget with error icon
-class ErrorWidget extends StatelessWidget {
-  const ErrorWidget({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Icon(
-        Icons.error_outline,
-        size: 35,
-        color: themeColor,
-      ),
-    );
-  }
-}
-
-// custom loadinh animation with sand glass
-class LoadingAnimation extends StatefulWidget {
-  const LoadingAnimation({Key? key}) : super(key: key);
-
-  @override
-  State<LoadingAnimation> createState() => _LoadingAnimationState();
-}
-
-class _LoadingAnimationState extends State<LoadingAnimation>
-    with TickerProviderStateMixin {
-  late Animation<double> animation;
-  late AnimationController animController;
-  bool isEmpty = false;
-  @override
-  void initState() {
-    super.initState();
-    // initialize animationcontroller
-    animController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        seconds: 2,
-      ),
-    );
-    //begin at zero and end at Pi value to get 180 degree
-    animation = Tween<double>(
-      begin: 0,
-      end: math.pi,
-    ).animate(animController)
-      ..addStatusListener((status) {
-        // reverse the animation when its completed
-        if (status == AnimationStatus.completed) {
-          animController.reverse();
-          isEmpty = !isEmpty;
-        }
-        // do the animation again when its finished
-        else if (status == AnimationStatus.dismissed) {
-          animController.forward();
-          isEmpty = !isEmpty;
-        }
-      });
-    animController.forward(); // initialize the animation
-  }
-
-  @override
-  void dispose() {
-    animController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: animation,
-      builder: (context, child) {
-        return Transform.rotate(
-          angle: animation.value,
-          child: Center(
-            // show icon according to gravity logic
-            child: isEmpty
-                ? const Icon(
-                    Icons.hourglass_top_rounded,
-                    size: 35,
-                    color: themeColor,
-                  )
-                : const Icon(
-                    Icons.hourglass_bottom_rounded,
-                    size: 35,
-                    color: themeColor,
-                  ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-//show no internet widget
-class NoInternetWidget extends StatelessWidget {
-  const NoInternetWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Center(
-      child: Icon(
-        Icons.signal_wifi_bad_rounded,
-        size: 35,
-        color: themeColor,
-      ),
     );
   }
 }

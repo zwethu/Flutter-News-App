@@ -1,4 +1,3 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:news_app/core/colors.dart';
@@ -6,6 +5,8 @@ import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/model/entities/article.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widget/button_back.dart';
 
 class ArticleScreen extends StatefulWidget {
   final Articles article; // article is required to show data on UI
@@ -250,25 +251,7 @@ class BookmarkButton extends StatelessWidget {
   }
 }
 
-class ButtonBack extends StatelessWidget {
-  const ButtonBack({
-    Key? key,
-  }) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-        AutoRouter.of(context).pop();
-      },
-      icon: const Icon(
-        Icons.arrow_back_ios_rounded,
-        size: 35,
-        color: themeColor,
-      ),
-    );
-  }
-}
 
 //Image
 class ImageFrame extends StatelessWidget {

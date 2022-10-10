@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:news_app/model/entities/article.dart';
-import 'package:news_app/model/repository/online_article_repo.dart';
+
+import '../../../model/repository/online_article_repo.dart';
+
 part 'online_article_bloc_event.dart';
 part 'online_article_bloc_state.dart';
 
