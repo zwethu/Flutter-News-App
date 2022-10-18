@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'dart:math' as math;
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/hive/article_box.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../widget/button_back.dart';
@@ -45,7 +47,9 @@ class _ArticleScreenState extends State<ArticleScreen> {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              const CustomAppbar(), // appbar with back button and bookmark button
+              CustomAppbar(
+                article: widget.article,
+              ), // appbar with back button and bookmark button
               const Divider(
                 thickness: 1,
                 color: themeColor,
@@ -59,7 +63,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
               ),
               DescriptionWidget(widget: widget), // news description text
               LinkWidget(
-                url: widget.article.url ?? '',
+                url: widget.article.url??'',
               ), // link to the full article
             ],
           ),
@@ -201,7 +205,7 @@ class TitleWidget extends StatelessWidget {
         horizontal: padding2x,
       ),
       child: Text(
-        widget.article.title ?? '',
+        widget.article.title??'',
         style: logoStyle,
         maxLines: 4,
       ),
@@ -211,8 +215,10 @@ class TitleWidget extends StatelessWidget {
 
 // custom appbar with backbutton and bookmark button
 class CustomAppbar extends StatelessWidget {
+  final Articles article;
   const CustomAppbar({
     Key? key,
+    required this.article,
   }) : super(key: key);
 
   @override
@@ -224,9 +230,11 @@ class CustomAppbar extends StatelessWidget {
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          ButtonBack(), //back button
-          BookmarkButton(), // bookmark button
+        children: [
+          const ButtonBack(), //back button
+          BookmarkButton(
+            article: article,
+          ), // bookmark button
         ],
       ),
     );
@@ -234,14 +242,21 @@ class CustomAppbar extends StatelessWidget {
 }
 
 class BookmarkButton extends StatelessWidget {
+  final Articles article;
   const BookmarkButton({
     Key? key,
+    required this.article,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {},
+      onPressed: () {
+        final box = Hive.box<ArticleBox>(articleBox);
+        // ArticleBox data = ArticleBox()..articles = article;
+        // box.add(data);
+        // print(box.values);
+      },
       icon: const Icon(
         Icons.bookmark_add_outlined,
         size: 35,
@@ -250,8 +265,6 @@ class BookmarkButton extends StatelessWidget {
     );
   }
 }
-
-
 
 //Image
 class ImageFrame extends StatelessWidget {
@@ -270,7 +283,7 @@ class ImageFrame extends StatelessWidget {
         horizontal: padding2x,
       ),
       child: Image.network(
-        widget.article.urlToImage ?? '',
+        widget.article.urlToImage??'',
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.width -
             32, //subtract (left padding + right padding) to get the same value of width

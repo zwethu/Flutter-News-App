@@ -1,4 +1,3 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,13 +28,15 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<OnlineArticleBloc>(context).add(const ResetOnlineArticleBlocEvent());
+    BlocProvider.of<OnlineArticleBloc>(context).add(
+      const ResetOnlineArticleBlocEvent(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async{
+      onWillPop: () async {
         AutoRouter.of(context).push(const HomeScreen());
         return true;
       },
@@ -118,7 +119,8 @@ class _SearchScreenState extends State<SearchScreen> {
                           return Expanded(
                             child: NewsList(state: state),
                           );
-                        } else if (state is OnlineArticleBlocNoConnectionState) {
+                        } else if (state
+                            is OnlineArticleBlocNoConnectionState) {
                           //return connection error widget when there is no internet
                           return const Expanded(
                             child: NoInternetWidget(),
