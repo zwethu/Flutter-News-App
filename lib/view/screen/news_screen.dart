@@ -118,9 +118,8 @@ class CustomAppBar extends StatelessWidget {
           ),
           IconButton(
             onPressed: () {
-              AutoRouter.of(context).push(
-                const SearchScreen(),
-              );// navigate to Search screen
+              
+              AutoRouter.of(context).popAndPush(const SearchScreen());
             },
             icon: const Icon(
               Icons.search_outlined,

@@ -13,3 +13,10 @@ class GetOnlineArticleBlocEvent extends OnlineArticleBlocEvent {
   @override
   List<Object> get props => [topic];
 }
+
+class ResetOnlineArticleBlocEvent extends OnlineArticleBlocEvent{
+  const ResetOnlineArticleBlocEvent();
+  @override
+  List<Object> get props => [];
+}
+
