@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'dart:math' as math;
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/model/entities/article.dart';
-import 'package:news_app/model/hive/article_box.dart';
+import 'package:news_app/view_model/provider/local_data_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../widget/button_back.dart';
@@ -63,7 +63,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
               ),
               DescriptionWidget(widget: widget), // news description text
               LinkWidget(
-                url: widget.article.url??'',
+                url: widget.article.url ?? '',
               ), // link to the full article
             ],
           ),
@@ -205,7 +205,7 @@ class TitleWidget extends StatelessWidget {
         horizontal: padding2x,
       ),
       child: Text(
-        widget.article.title??'',
+        widget.article.title ?? '',
         style: logoStyle,
         maxLines: 4,
       ),
@@ -252,10 +252,8 @@ class BookmarkButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       onPressed: () {
-        final box = Hive.box<ArticleBox>(articleBox);
-        // ArticleBox data = ArticleBox()..articles = article;
-        // box.add(data);
-        // print(box.values);
+       final provider = context.read<LocalDataProvider>();
+       provider.bookmarkArticle(article);
       },
       icon: const Icon(
         Icons.bookmark_add_outlined,
@@ -283,7 +281,7 @@ class ImageFrame extends StatelessWidget {
         horizontal: padding2x,
       ),
       child: Image.network(
-        widget.article.urlToImage??'',
+        widget.article.urlToImage ?? '',
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.width -
             32, //subtract (left padding + right padding) to get the same value of width

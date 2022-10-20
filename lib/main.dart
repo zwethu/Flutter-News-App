@@ -7,6 +7,8 @@ import 'package:news_app/model/repository/online_article_repo.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 import 'package:http/http.dart' as http;
+import 'package:news_app/view_model/provider/local_data_provider.dart';
+import 'package:provider/provider.dart';
 
 void main(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,14 +30,19 @@ class MyApp extends StatelessWidget {
     OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
     return BlocProvider(
       create: (context) => OnlineArticleBloc(repo),
-      child: MaterialApp.router(
-        theme: ThemeData(
-          splashColor: Colors.transparent,
-          highlightColor: Colors.transparent,
-          hoverColor: Colors.transparent,
-        ),
-        routerDelegate: _appRouter.delegate(),
-        routeInformationParser: _appRouter.defaultRouteParser(),
+      child: ChangeNotifierProvider(
+        create: (context) => LocalDataProvider(),
+        builder: (context, child) {
+          return MaterialApp.router(
+            theme: ThemeData(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
+              hoverColor: Colors.transparent,
+            ),
+            routerDelegate: _appRouter.delegate(),
+            routeInformationParser: _appRouter.defaultRouteParser(),
+          );
+        },
       ),
     );
   }

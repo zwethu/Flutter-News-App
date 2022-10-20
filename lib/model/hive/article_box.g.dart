@@ -16,15 +16,34 @@ class ArticleBoxAdapter extends TypeAdapter<ArticleBox> {
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return ArticleBox()..articles = fields[1] as Articles;
+    return ArticleBox()
+      ..author = fields[1] as String
+      ..title = fields[2] as String
+      ..description = fields[3] as String
+      ..url = fields[4] as String
+      ..urlToImage = fields[5] as String
+      ..publishedAt = fields[6] as String
+      ..content = fields[7] as String;
   }
 
   @override
   void write(BinaryWriter writer, ArticleBox obj) {
     writer
+      ..writeByte(7)
       ..writeByte(1)
-      ..writeByte(1)
-      ..write(obj.articles);
+      ..write(obj.author)
+      ..writeByte(2)
+      ..write(obj.title)
+      ..writeByte(3)
+      ..write(obj.description)
+      ..writeByte(4)
+      ..write(obj.url)
+      ..writeByte(5)
+      ..write(obj.urlToImage)
+      ..writeByte(6)
+      ..write(obj.publishedAt)
+      ..writeByte(7)
+      ..write(obj.content);
   }
 
   @override
