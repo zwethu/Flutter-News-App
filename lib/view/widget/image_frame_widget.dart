@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/view/widget/news_list.dart';
 
-class ImageFrame extends StatelessWidget {
+class ImageFrameWidget extends StatelessWidget {
   final String urlToImage;
   final int index;
-  const ImageFrame({
+  const ImageFrameWidget({
     Key? key,
     required this.urlToImage,
     required this.index,

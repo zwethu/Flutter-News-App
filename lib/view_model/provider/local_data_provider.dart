@@ -1,21 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:news_app/core/constants.dart';
 import 'package:news_app/model/entities/article.dart';
 import 'package:news_app/model/hive/article_box.dart';
+import 'package:news_app/model/repository/bookmark_article_repo.dart';
 
 class LocalDataProvider extends ChangeNotifier {
+  BookmarkArticleRepo repo = BookmarkArticleRepo();
 
-  LocalDataProvider(){
+  LocalDataProvider() {
     getBookmarkArticle();
   }
-  final box = Hive.box<ArticleBox>(articleBox);
   List<ArticleBox?> list = [];
 
   void getBookmarkArticle() {
-    for(int i = 0; i < box.length ; i++){
-      list.add(box.getAt(i));
-    }
+    list = repo.getArticles('bookmark');
   }
 
   void bookmarkArticle(Articles article) {
@@ -27,9 +24,23 @@ class LocalDataProvider extends ChangeNotifier {
       ..urlToImage = article.urlToImage ?? ''
       ..publishedAt = article.publishedAt ?? ''
       ..content = article.content ?? '';
-    box.add(data);
+    repo.saveInHive(data);
     list.add(data);
     notifyListeners();
   }
 
+  void removeBookmark(Articles article) {
+    ArticleBox data = ArticleBox()
+      ..author = article.author ?? ''
+      ..title = article.title ?? ''
+      ..description = article.description ?? ''
+      ..url = article.url ?? ''
+      ..urlToImage = article.urlToImage ?? ''
+      ..publishedAt = article.publishedAt ?? ''
+      ..content = article.content ?? '';
+    repo.removeFromHive(data);
+    getBookmarkArticle();
+    list.remove(data);
+    notifyListeners();
+  }
 }

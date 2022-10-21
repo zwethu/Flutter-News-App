@@ -5,7 +5,7 @@ import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view/widget/author_text.dart';
-import 'package:news_app/view/widget/image_frame.dart';
+import 'package:news_app/view/widget/image_frame_widget.dart';
 import 'package:news_app/view/widget/title_text.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 
@@ -41,7 +41,7 @@ class NewsList extends StatelessWidget {
             child: Row(
               children: [
                 // image
-                ImageFrame(
+                ImageFrameWidget(
                   urlToImage: state.articleList[index]?.urlToImage ?? '',
                   index: index,
                 ),

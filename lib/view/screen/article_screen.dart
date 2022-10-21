@@ -4,6 +4,7 @@ import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/view_model/provider/bookmark_condition_provider.dart';
 import 'package:news_app/view_model/provider/local_data_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -42,33 +43,39 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomAppbar(
-                article: widget.article,
-              ), // appbar with back button and bookmark button
-              const Divider(
-                thickness: 1,
-                color: themeColor,
+    return ChangeNotifierProvider(
+      create: (context) =>
+          BookmarkConditionProvider(widget.article.publishedAt ?? ''),
+      builder: (context, child) {
+        return Scaffold(
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  CustomAppbar(
+                    article: widget.article,
+                  ), // appbar with back button and bookmark button
+                  const Divider(
+                    thickness: 1,
+                    color: themeColor,
+                  ),
+                  TitleWidget(widget: widget), // News title
+                  ImageFrame(widget: widget), // Image
+                  // show date and time in row
+                  DatetimeWidget(
+                    date: date,
+                    time: time,
+                  ),
+                  DescriptionWidget(widget: widget), // news description text
+                  LinkWidget(
+                    url: widget.article.url ?? '',
+                  ), // link to the full article
+                ],
               ),
-              TitleWidget(widget: widget), // News title
-              ImageFrame(widget: widget), // Image
-              // show date and time in row
-              DatetimeWidget(
-                date: date,
-                time: time,
-              ),
-              DescriptionWidget(widget: widget), // news description text
-              LinkWidget(
-                url: widget.article.url ?? '',
-              ), // link to the full article
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
@@ -250,16 +257,34 @@ class BookmarkButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () {
-       final provider = context.read<LocalDataProvider>();
-       provider.bookmarkArticle(article);
+    return Consumer<BookmarkConditionProvider>(
+      builder: (context, value, child) {
+        return IconButton(
+          onPressed: () {
+            final dataProvider = context.read<LocalDataProvider>();
+
+            final provider = context.read<BookmarkConditionProvider>();
+            if (!provider.getBool) {
+              dataProvider.bookmarkArticle(article);
+              provider.changeBool();
+            }else if(provider.getBool){
+              dataProvider.removeBookmark(article);
+              provider.changeBool();
+            }
+          },
+          icon: value.isBookmark
+              ? const Icon(
+                  Icons.bookmark_added_outlined,
+                  size: 35,
+                  color: themeColor,
+                )
+              : const Icon(
+                  Icons.bookmark_add_outlined,
+                  size: 35,
+                  color: themeColor,
+                ),
+        );
       },
-      icon: const Icon(
-        Icons.bookmark_add_outlined,
-        size: 35,
-        color: themeColor,
-      ),
     );
   }
 }
