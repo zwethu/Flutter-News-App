@@ -1,16 +1,15 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:news_app/core/styles.dart';
 
 class EmptyWidget extends StatelessWidget {
-  const EmptyWidget({Key? key}) : super(key: key);
+  final String text;
+  const EmptyWidget({Key? key, required this.text}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: Text(
-        'NO BOOKMARK',
+        text,
         style: topicStyle,
       ),
     );

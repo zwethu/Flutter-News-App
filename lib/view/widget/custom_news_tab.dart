@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/view/widget/custom_error_widget.dart';
+import 'package:news_app/view/widget/empty_widget.dart';
 import 'package:news_app/view/widget/loading_animation.dart';
 import 'package:news_app/view/widget/news_list.dart';
 import 'package:news_app/view/widget/no_internet_widget.dart';
@@ -36,7 +37,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
           return const LoadingAnimation();
         } else if (state is OnlineArticleBlocEmptyState) {
           // return placeholder when data is empty (empty state)
-          return const Placeholder(color: Colors.red);
+          return const EmptyWidget(text: 'NO RESULT');
         } else if (state is OnlineArticleBlocLoadedState) {
           // return list of news when loading is completed(loaded)
           return NewsList(state: state);
@@ -48,7 +49,7 @@ class _CustomNewsTabState extends State<CustomNewsTab> {
           return const CustomErrorWidget();
         } else {
           // return loading animation for unexpected condition
-          return const Placeholder();
+          return const LoadingAnimation();
         }
       },
     );

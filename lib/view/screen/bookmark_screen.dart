@@ -48,7 +48,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
               child: Consumer<LocalDataProvider>(
                 builder: (context, provider, child) {
                   if (provider.list.isEmpty) {
-                    return const EmptyWidget();
+                    return const EmptyWidget(text: 'NO BOOKMARK',);
                   } else {
                     return ListView.builder(
                       // scroll effect from IOS
