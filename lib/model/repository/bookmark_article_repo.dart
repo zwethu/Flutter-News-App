@@ -1,14 +1,14 @@
 import 'package:hive/hive.dart';
-import 'package:news_app/core/constants.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/article_repo.dart';
 
 class BookmarkArticleRepo extends ArticleRepo {
-  final box = Hive.box<ArticleBox>(articleBox);
+  final Box<ArticleBox> box;
+  BookmarkArticleRepo(this.box);
+
   @override
   List<ArticleBox?> getArticles(String topic) {
     List<ArticleBox?> dataList = [];
-
     for (int i = 0; i < box.length; i++) {
       dataList.add(box.getAt(i));
     }

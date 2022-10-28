@@ -27,11 +27,12 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+     final box = Hive.box<ArticleBox>(articleBox);
     OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
     return BlocProvider(
       create: (context) => OnlineArticleBloc(repo),
       child: ChangeNotifierProvider(
-        create: (context) => LocalDataProvider(),
+        create: (context) => LocalDataProvider(box),
         builder: (context, child) {
           return MaterialApp.router(
             theme: ThemeData(

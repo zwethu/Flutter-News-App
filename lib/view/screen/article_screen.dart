@@ -43,7 +43,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
+    return ChangeNotifierProvider<BookmarkConditionProvider>(
       create: (context) =>
           BookmarkConditionProvider(widget.article.publishedAt ?? ''),
       builder: (context, child) {

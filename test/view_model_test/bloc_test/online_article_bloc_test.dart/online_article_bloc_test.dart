@@ -78,10 +78,19 @@ void main() {
         act: (OnlineArticleBloc bloc) => bloc.add(
           const GetOnlineArticleBlocEvent('trending'),
         ),
-        expect: ()=> [
+        expect: () => [
           OnlineArticleBlocLoadingState(),
-         isA<OnlineArticleBlocErrorState>(),
+          isA<OnlineArticleBlocErrorState>(),
         ],
+      );
+
+      blocTest(
+        'return [initial state] when event is added',
+        build: () => OnlineArticleBloc(repo),
+        act: (OnlineArticleBloc bloc) => bloc.add(
+          const ResetOnlineArticleBlocEvent(),
+        ),
+        expect: ()=>[isA<OnlineArticleBlocInitialState>()],
       );
     },
   );
