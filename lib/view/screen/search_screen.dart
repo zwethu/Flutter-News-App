@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
 import '../../model/repository/online_article_repo.dart';
+import '../../model/service/news_api_service.dart';
 import '../../view_model/bloc/online_article_bloc/online_article_bloc.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -24,10 +25,14 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
+  late NewsApiService service;
+  late OnlineArticleRepo repo;
   @override
   void initState() {
     super.initState();
+    http.Client client = http.Client();
+    service = NewsApiService(client);
+    repo = OnlineArticleRepo(service);
     BlocProvider.of<OnlineArticleBloc>(context).add(
       const ResetOnlineArticleBlocEvent(),
     );

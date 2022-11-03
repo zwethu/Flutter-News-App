@@ -5,10 +5,10 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i4;
 
-import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:news_app/model/entities/article.dart' as _i5;
 import 'package:news_app/model/repository/online_article_repo.dart' as _i3;
+import 'package:news_app/model/service/news_api_service.dart' as _i2;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -21,8 +21,9 @@ import 'package:news_app/model/repository/online_article_repo.dart' as _i3;
 // ignore_for_file: camel_case_types
 // ignore_for_file: subtype_of_sealed_class
 
-class _FakeClient_0 extends _i1.SmartFake implements _i2.Client {
-  _FakeClient_0(Object parent, Invocation parentInvocation)
+class _FakeNewsApiService_0 extends _i1.SmartFake
+    implements _i2.NewsApiService {
+  _FakeNewsApiService_0(Object parent, Invocation parentInvocation)
       : super(parent, parentInvocation);
 }
 
@@ -35,9 +36,10 @@ class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
   }
 
   @override
-  _i2.Client get client => (super.noSuchMethod(Invocation.getter(#client),
-          returnValue: _FakeClient_0(this, Invocation.getter(#client)))
-      as _i2.Client);
+  _i2.NewsApiService get service => (super.noSuchMethod(
+          Invocation.getter(#service),
+          returnValue: _FakeNewsApiService_0(this, Invocation.getter(#service)))
+      as _i2.NewsApiService);
   @override
   _i4.Future<List<_i5.Articles?>> getArticles(String? topic) =>
       (super.noSuchMethod(Invocation.method(#getArticles, [topic]),

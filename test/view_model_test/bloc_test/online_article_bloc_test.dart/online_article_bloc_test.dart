@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -8,9 +7,8 @@ import 'package:mockito/mockito.dart';
 import 'package:news_app/model/entities/article.dart';
 import 'package:news_app/model/repository/online_article_repo.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
-
-import '../../../model_test/repository_test/online_article_repo_test.mocks.dart';
 import '../../../test_sources/file_reader.dart';
+import 'online_article_bloc_test.mocks.dart';
 
 @GenerateMocks([OnlineArticleRepo])
 void main() {
@@ -90,7 +88,7 @@ void main() {
         act: (OnlineArticleBloc bloc) => bloc.add(
           const ResetOnlineArticleBlocEvent(),
         ),
-        expect: ()=>[isA<OnlineArticleBlocInitialState>()],
+        expect: () => [isA<OnlineArticleBlocInitialState>()],
       );
     },
   );

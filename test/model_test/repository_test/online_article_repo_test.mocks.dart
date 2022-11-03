@@ -3,12 +3,12 @@
 // Do not manually edit this file.
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i4;
+import 'dart:async' as _i5;
 
 import 'package:http/http.dart' as _i2;
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:news_app/model/entities/article.dart' as _i5;
-import 'package:news_app/model/repository/online_article_repo.dart' as _i3;
+import 'package:news_app/model/entities/article.dart' as _i3;
+import 'package:news_app/model/service/news_api_service.dart' as _i4;
 
 // ignore_for_file: type=lint
 // ignore_for_file: avoid_redundant_argument_values
@@ -26,11 +26,16 @@ class _FakeClient_0 extends _i1.SmartFake implements _i2.Client {
       : super(parent, parentInvocation);
 }
 
-/// A class which mocks [OnlineArticleRepo].
+class _FakeArticle_1 extends _i1.SmartFake implements _i3.Article {
+  _FakeArticle_1(Object parent, Invocation parentInvocation)
+      : super(parent, parentInvocation);
+}
+
+/// A class which mocks [NewsApiService].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
-  MockOnlineArticleRepo() {
+class MockNewsApiService extends _i1.Mock implements _i4.NewsApiService {
+  MockNewsApiService() {
     _i1.throwOnMissingStub(this);
   }
 
@@ -39,9 +44,9 @@ class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
           returnValue: _FakeClient_0(this, Invocation.getter(#client)))
       as _i2.Client);
   @override
-  _i4.Future<List<_i5.Articles?>> getArticles(String? topic) =>
-      (super.noSuchMethod(Invocation.method(#getArticles, [topic]),
-              returnValue:
-                  _i4.Future<List<_i5.Articles?>>.value(<_i5.Articles?>[]))
-          as _i4.Future<List<_i5.Articles?>>);
+  _i5.Future<_i3.Article> fetchArticle(String? topic) => (super.noSuchMethod(
+          Invocation.method(#fetchArticle, [topic]),
+          returnValue: _i5.Future<_i3.Article>.value(
+              _FakeArticle_1(this, Invocation.method(#fetchArticle, [topic]))))
+      as _i5.Future<_i3.Article>);
 }

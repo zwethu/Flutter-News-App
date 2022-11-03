@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:news_app/model/repository/bookmark_article_repo.dart';
 import 'package:news_app/model/repository/online_article_repo.dart';
+import 'package:news_app/model/service/news_api_service.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 import 'package:http/http.dart' as http;
@@ -27,12 +29,15 @@ class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-     final box = Hive.box<ArticleBox>(articleBox);
-    OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
+    http.Client client = http.Client();
+    final box = Hive.box<ArticleBox>(articleBox);
+    BookmarkArticleRepo bookmarkArticleRepo = BookmarkArticleRepo(box);
+    NewsApiService service = NewsApiService(client);
+    OnlineArticleRepo repo = OnlineArticleRepo(service);
     return BlocProvider(
       create: (context) => OnlineArticleBloc(repo),
       child: ChangeNotifierProvider(
-        create: (context) => LocalDataProvider(box),
+        create: (context) => LocalDataProvider(bookmarkArticleRepo),
         builder: (context, child) {
           return MaterialApp.router(
             theme: ThemeData(

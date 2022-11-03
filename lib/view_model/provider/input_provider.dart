@@ -15,6 +15,7 @@ class InputProvider extends ChangeNotifier {
   }
 
   String get getText => controller.text;
+  
   void setText(String input) {
     controller.text = input;
     notifyListeners();

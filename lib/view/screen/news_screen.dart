@@ -5,6 +5,7 @@ import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:http/http.dart' as http;
 import 'package:news_app/model/repository/online_article_repo.dart';
+import 'package:news_app/model/service/news_api_service.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view/widget/custom_news_tab.dart';
 
@@ -18,11 +19,15 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> 
     with SingleTickerProviderStateMixin {
   late TabController controller;
-  OnlineArticleRepo repo = OnlineArticleRepo(http.Client());
+  late NewsApiService service;
+  late OnlineArticleRepo repo;
   @override
   void initState() {
     super.initState();
     controller = TabController(length: 5, vsync: this);
+    http.Client client = http.Client();
+    service = NewsApiService(client);
+    repo = OnlineArticleRepo(service);
   }
 
   @override
