@@ -9,7 +9,7 @@ import 'local_data_provider_test.mocks.dart';
 @GenerateMocks([BookmarkArticleRepo])
 void main() {
   final MockBookmarkArticleRepo repo = MockBookmarkArticleRepo();
-  final LocalDataProvider provider = LocalDataProvider(repo);
+  LocalDataProvider provider;
   ArticleBox data = ArticleBox()
     ..author = "author"
     ..title = "title"
@@ -18,16 +18,38 @@ void main() {
     ..urlToImage = "urlToImage"
     ..publishedAt = "publishedAt"
     ..content = "content";
-  group("test getBOOKmarkArticle", () {
-    // test("return [] when there is no data", () {
-    //   when(repo.getArticles('bookmark')).thenAnswer((_) => []);
-    //   provider.getBookmarkArticle();
-    //   verify(repo.getArticles(any));
-    // });
+   
+  group("test getBOOKmarkArticle - ", () {
+    test("return [] when there is no data", () {
+      when(repo.getArticles(any)).thenAnswer((_) => []);
+      provider = LocalDataProvider(repo);
+      provider.getBookmarkArticle();
+      expect([], provider.list);
+      verify(repo.getArticles(any)).called(2);
+    });
     test("return list of Article", () {
+      when(repo.getArticles(any)).thenAnswer((_) => []);
+      provider = LocalDataProvider(repo);
       when(repo.getArticles('bookmark')).thenAnswer((_) => [data]);
       provider.getBookmarkArticle();
-     
+      expect([data], provider.list);
+      verify(repo.getArticles(any)).called(2);
     });
   });
+  group("test constructor - ", (){
+     test('return [] when object is created and there is no data', (){
+      when(repo.getArticles(any)).thenAnswer((realInvocation) => []);
+      provider = LocalDataProvider(repo);
+      expect([], provider.list);
+      verify(repo.getArticles(any)).called(1);
+     });
+      test('return [data] when object is created and there is data', (){
+      when(repo.getArticles(any)).thenAnswer((realInvocation) => [data]);
+      provider = LocalDataProvider(repo);
+      expect([data], provider.list);
+      verify(repo.getArticles(any)).called(1);
+     });
+  });
+  
+  
 }
