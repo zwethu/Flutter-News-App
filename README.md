@@ -23,4 +23,4 @@
 
 - ### API - [*News API*](https://newsapi.org/)
 - ### State management - [*Provider*](https://pub.dev/packages/provider) & [*Bloc*](https://pub.dev/packages/flutter_bloc)
-- ### Local persistance - [*Hive Flutter*](https://pub.dev/packages/hive)
+- ### Local persistence - [*Hive Flutter*](https://pub.dev/packages/hive)
