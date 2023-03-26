@@ -3,7 +3,7 @@ import 'package:news_app/model/repository/article_repo.dart';
 import 'package:news_app/model/service/news_api_service.dart';
 
 //Repository for Online Articles
-class OnlineArticleRepo extends ArticleRepo {
+class OnlineArticleRepo implements ArticleRepo {
   final NewsApiService service;  
   OnlineArticleRepo(this.service);
   @override

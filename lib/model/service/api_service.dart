@@ -1,6 +1,4 @@
-import 'package:http/http.dart' as http;
+import 'package:news_app/model/entities/article.dart';
 abstract class ApiService{
-  // require Client for testing purpose
-  final http.Client client;
-  ApiService(this.client);
+   Future<Article> fetchArticle(String topic);
 }

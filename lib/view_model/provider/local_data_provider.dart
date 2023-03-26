@@ -4,10 +4,8 @@ import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/bookmark_article_repo.dart';
 
 class LocalDataProvider extends ChangeNotifier {
-  
    final BookmarkArticleRepo repo;
   LocalDataProvider(this.repo) {
-    
     getBookmarkArticle();
   }
  

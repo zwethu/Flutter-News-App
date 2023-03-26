@@ -4,10 +4,12 @@ import 'package:http/http.dart' as http;
 import 'package:news_app/model/entities/article.dart';
 import 'package:news_app/model/service/api_service.dart';
 
-class NewsApiService extends ApiService {
-  NewsApiService(super.client);
+class NewsApiService implements ApiService {
+  final http.Client client;
+  NewsApiService(this.client); // require Client for testing purpose
 
 // fetch response from api
+  @override
   Future<Article> fetchArticle(String topic) async {
     final String url =
         'https://newsapi.org/v2/everything?q=$topic&apiKey=127eda8cc5c148b2a7392a2504e0d56e';
@@ -16,8 +18,9 @@ class NewsApiService extends ApiService {
     try {
       if (response.statusCode == 200) {
         //return data when response status is good
-        return Article.fromJson(jsonDecode(
-            response.body)); // change json type response body to Article object
+        return Article.fromJson(
+          jsonDecode(response.body),
+        ); // change json type response body to Article object
       } else {
         // throw exception when response status is not good
         throw Exception(response.statusCode);

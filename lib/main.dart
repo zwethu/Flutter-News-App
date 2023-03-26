@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     http.Client client = http.Client();
     final box = Hive.box<ArticleBox>(articleBox);
-    BookmarkArticleRepo bookmarkArticleRepo = BookmarkArticleRepo(box);
-    NewsApiService service = NewsApiService(client);
-    OnlineArticleRepo repo = OnlineArticleRepo(service);
+    final bookmarkArticleRepo = BookmarkArticleRepo(box);
+    final service = NewsApiService(client);
+    final repo = OnlineArticleRepo(service);
     return BlocProvider(
       create: (context) => OnlineArticleBloc(repo),
       child: ChangeNotifierProvider(

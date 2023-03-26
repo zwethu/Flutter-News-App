@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/article_repo.dart';
 
-class BookmarkArticleRepo extends ArticleRepo {
+class BookmarkArticleRepo implements ArticleRepo {
   final Box<ArticleBox> box;
   BookmarkArticleRepo(this.box);
 
