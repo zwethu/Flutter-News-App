@@ -28,7 +28,7 @@ class _FakeBox_0<E> extends _i1.SmartFake implements _i2.Box<E> {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockBookmarkArticleRepo extends _i1.Mock
-    implements _i3.BookmarkArticleRepo {
+    implements _i3.BookmarkArticleRepoImp {
   MockBookmarkArticleRepo() {
     _i1.throwOnMissingStub(this);
   }

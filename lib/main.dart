@@ -4,7 +4,7 @@ import 'package:news_app/core/constants.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/model/repository/bookmark_article_repo.dart';
-import 'package:news_app/model/repository/online_article_repo.dart';
+import 'package:news_app/model/repository/online_article_repo_imp.dart';
 import 'package:news_app/model/service/news_api_service.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
@@ -31,9 +31,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     http.Client client = http.Client();
     final box = Hive.box<ArticleBox>(articleBox);
-    final bookmarkArticleRepo = BookmarkArticleRepo(box);
+    final bookmarkArticleRepo = BookmarkArticleRepoImp(box);
     final service = NewsApiService(client);
-    final repo = OnlineArticleRepo(service);
+    final repo = OnlineArticleRepoImp(service);
     return BlocProvider(
       create: (context) => OnlineArticleBloc(repo),
       child: ChangeNotifierProvider(

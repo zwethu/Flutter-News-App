@@ -10,7 +10,7 @@ class NewsApiService implements ApiService {
 
 // fetch response from api
   @override
-  Future<Article> fetchArticle(String topic) async {
+  Future<ArticleResponse> fetchArticle(String topic) async {
     final String url =
         'https://newsapi.org/v2/everything?q=$topic&apiKey=127eda8cc5c148b2a7392a2504e0d56e';
     Uri uri = Uri.parse(Uri.encodeFull(url));
@@ -18,7 +18,7 @@ class NewsApiService implements ApiService {
     try {
       if (response.statusCode == 200) {
         //return data when response status is good
-        return Article.fromJson(
+        return ArticleResponse.fromJson(
           jsonDecode(response.body),
         ); // change json type response body to Article object
       } else {

@@ -1,10 +1,10 @@
 import 'package:hive/hive.dart';
 import 'package:news_app/model/hive/article_box.dart';
-import 'package:news_app/model/repository/article_repo.dart';
+import 'package:news_app/model/repository/bookmark_article.dart';
 
-class BookmarkArticleRepo implements ArticleRepo {
-  final Box<ArticleBox> box;
-  BookmarkArticleRepo(this.box);
+class BookmarkArticleRepoImp implements BookmarkArticleRepo {
+  final Box<ArticleBox?> box;
+  BookmarkArticleRepoImp(this.box);
 
   @override
   List<ArticleBox?> getArticles(String topic) {
@@ -15,10 +15,12 @@ class BookmarkArticleRepo implements ArticleRepo {
     return dataList;
   }
 
+  @override
   void saveInHive(ArticleBox article) {
     box.add(article);
   }
 
+  @override
   List<ArticleBox?> removeFromHive(ArticleBox article) {
     for (int i = 0; i < box.length; i++) {
       if (box.getAt(i)?.publishedAt == article.publishedAt) {

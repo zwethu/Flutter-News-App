@@ -17,23 +17,23 @@ void main() {
 
   group('tesing for articles object - ', () {
     Source tSource = Source('CNN', 'CNN');
-    Articles tArticles = Articles(tSource, 'author', 'title', 'description',
+    Article tArticles = Article(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
     test('change data from json to articles object', () {
       final Map<String, dynamic> data = json.decode(readFile('tArticles.json'));
-      final result = Articles.fromJson(data);
+      final result = Article.fromJson(data);
       expect(result, tArticles);
     });
   });
 
   group('testing for article object - ', () {
     Source tSource = Source('CNN', 'CNN');
-    Articles tArticles = Articles(tSource, 'author', 'title', 'description',
+    Article tArticles = Article(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
-    Article tArticle = Article('ok', 1,[tArticles]);
+    ArticleResponse tArticle = ArticleResponse('ok', 1,[tArticles]);
     test('change data from json to article object', () {
       final Map<String, dynamic> data = json.decode(readFile('tArticle.json'));
-      final result = Article.fromJson(data);
+      final result = ArticleResponse.fromJson(data);
       expect(result, tArticle);
     });
   });

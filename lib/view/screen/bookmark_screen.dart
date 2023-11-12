@@ -57,7 +57,7 @@ class _BookMarkScreenState extends State<BookMarkScreen> {
                       itemBuilder: (context, index) {
                         return GestureDetector(
                           onTap: () {
-                            final article = Articles(
+                            final article = Article(
                               Source('', ''),
                               provider.list[index]?.author ?? '',
                               provider.list[index]?.title ?? '',

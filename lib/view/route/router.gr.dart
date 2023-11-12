@@ -71,7 +71,7 @@ class HomeScreen extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.ArticleScreen]
 class ArticleScreen extends _i2.PageRouteInfo<ArticleScreenArgs> {
-  ArticleScreen({_i3.Key? key, required _i4.Articles article})
+  ArticleScreen({_i3.Key? key, required _i4.Article article})
       : super(ArticleScreen.name,
             path: '/article-screen',
             args: ArticleScreenArgs(key: key, article: article));
@@ -84,7 +84,7 @@ class ArticleScreenArgs {
 
   final _i3.Key? key;
 
-  final _i4.Articles article;
+  final _i4.Article article;
 
   @override
   String toString() {

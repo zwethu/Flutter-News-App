@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:news_app/model/repository/online_article_repo.dart';
+import 'package:news_app/model/repository/online_article_repo_imp.dart';
 import 'package:news_app/model/service/news_api_service.dart';
 import 'package:news_app/view/screen/news_screen.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
@@ -11,7 +11,7 @@ void main() {
   testWidgets('test NewsScreen', (widgetTester) async {
     http.Client client = http.Client();
     NewsApiService service = NewsApiService(client);
-    OnlineArticleRepo repo = OnlineArticleRepo(service);
+    OnlineArticleRepoImp repo = OnlineArticleRepoImp(service);
     await widgetTester.pumpWidget(
       BlocProvider(
         create: (context) => OnlineArticleBloc(repo),

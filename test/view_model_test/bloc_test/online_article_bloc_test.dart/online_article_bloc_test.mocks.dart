@@ -7,7 +7,7 @@ import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
 import 'package:news_app/model/entities/article.dart' as _i5;
-import 'package:news_app/model/repository/online_article_repo.dart' as _i3;
+import 'package:news_app/model/repository/online_article_repo_imp.dart' as _i3;
 import 'package:news_app/model/service/news_api_service.dart' as _i2;
 
 // ignore_for_file: type=lint
@@ -30,7 +30,7 @@ class _FakeNewsApiService_0 extends _i1.SmartFake
 /// A class which mocks [OnlineArticleRepo].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
+class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepoImp {
   MockOnlineArticleRepo() {
     _i1.throwOnMissingStub(this);
   }
@@ -41,9 +41,9 @@ class MockOnlineArticleRepo extends _i1.Mock implements _i3.OnlineArticleRepo {
           returnValue: _FakeNewsApiService_0(this, Invocation.getter(#service)))
       as _i2.NewsApiService);
   @override
-  _i4.Future<List<_i5.Articles?>> getArticles(String? topic) =>
+  _i4.Future<List<_i5.Article?>> getArticles(String? topic) =>
       (super.noSuchMethod(Invocation.method(#getArticles, [topic]),
               returnValue:
-                  _i4.Future<List<_i5.Articles?>>.value(<_i5.Articles?>[]))
-          as _i4.Future<List<_i5.Articles?>>);
+                  _i4.Future<List<_i5.Article?>>.value(<_i5.Article?>[]))
+          as _i4.Future<List<_i5.Article?>>);
 }

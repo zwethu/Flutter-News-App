@@ -22,12 +22,12 @@ void main() {
         (_) async => http.Response(readFile('tArticle.json'), 200),
       );
       final result = await service.fetchArticle('topic');
-      expect(result, isA<Article>());
+      expect(result, isA<ArticleResponse>());
       verify(client.get(any)).called(1);
       expect(
         result,
         equals(
-          Article.fromJson(
+          ArticleResponse.fromJson(
             json.decode(
               readFile('tArticle.json'),
             ),

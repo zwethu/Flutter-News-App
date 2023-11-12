@@ -15,7 +15,7 @@ class OnlineArticleBlocLoadingState extends OnlineArticleBlocState {}
 
 // loaded state
 class OnlineArticleBlocLoadedState extends OnlineArticleBlocState {
-  final List<Articles?> articleList;
+  final List<Article?> articleList;
   const OnlineArticleBlocLoadedState(this.articleList);
   @override
   List<Object> get props => [articleList];

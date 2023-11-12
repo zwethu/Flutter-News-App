@@ -5,11 +5,11 @@ import 'package:json_annotation/json_annotation.dart';
 part 'article.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class Article extends Equatable {
+class ArticleResponse extends Equatable {
   String? status;
   int? totalResults;
-  List<Articles?> articles;
-  Article(
+  List<Article?> articles;
+  ArticleResponse(
     this.status,
     this.totalResults,
     this.articles,
@@ -18,14 +18,14 @@ class Article extends Equatable {
   @override
   List<Object?> get props => [status, totalResults, articles];
 
-  factory Article.fromJson(Map<String, dynamic> json) =>
+  factory ArticleResponse.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArticleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
-class Articles extends Equatable {
+class Article extends Equatable {
   Source? source;
   String? author;
   String? title;
@@ -35,7 +35,7 @@ class Articles extends Equatable {
   String? publishedAt;
   String? content;
 
-  Articles(
+  Article(
     this.source,
     this.author,
     this.title,
@@ -58,7 +58,7 @@ class Articles extends Equatable {
         content
       ];
 
-  factory Articles.fromJson(Map<String, dynamic> json) =>
+  factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticlesFromJson(json);
 
   Map<String, dynamic> toJson() => _$ArticlesToJson(this);

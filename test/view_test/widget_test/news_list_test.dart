@@ -10,9 +10,9 @@ import '../../test_sources/file_reader.dart';
 
 void main() {
   testWidgets('test news list widget', (tester) async {
-    Articles articles =
-        Articles.fromJson(jsonDecode(readFile('tArticles.json')));
-    List<Articles?> articleList = [articles, articles, articles];
+    Article articles =
+        Article.fromJson(jsonDecode(readFile('tArticles.json')));
+    List<Article?> articleList = [articles, articles, articles];
     OnlineArticleBlocLoadedState state =
         OnlineArticleBlocLoadedState(articleList);
     await tester.pumpWidget(

@@ -10,7 +10,7 @@ import 'bookmark_article_repo_test.mocks.dart';
 @GenerateMocks([Box<ArticleBox>])
 void main() {
   MockBox<ArticleBox> box = MockBox<ArticleBox>();
-  BookmarkArticleRepo repo = BookmarkArticleRepo(box);
+  BookmarkArticleRepoImp repo = BookmarkArticleRepoImp(box);
   ArticleBox data = ArticleBox()
     ..author = "author"
     ..title = "title"
@@ -19,6 +19,7 @@ void main() {
     ..urlToImage = "urlToImage"
     ..publishedAt = "publishedAt"
     ..content = "content";
+    
   group('test getArticles method', () {
     test('return [] when Hive box is empty.', () {
       when(box.length).thenAnswer((_) => 0);

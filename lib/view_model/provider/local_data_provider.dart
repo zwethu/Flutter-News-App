@@ -4,7 +4,7 @@ import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/bookmark_article_repo.dart';
 
 class LocalDataProvider extends ChangeNotifier {
-   final BookmarkArticleRepo repo;
+   final BookmarkArticleRepoImp repo;
   LocalDataProvider(this.repo) {
     getBookmarkArticle();
   }
@@ -15,7 +15,7 @@ class LocalDataProvider extends ChangeNotifier {
     list = repo.getArticles('bookmark');
   }
 
-  void bookmarkArticle(Articles article) {
+  void bookmarkArticle(Article article) {
     ArticleBox data = ArticleBox()
       ..author = article.author ?? ''
       ..title = article.title ?? ''
@@ -29,7 +29,7 @@ class LocalDataProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removeBookmark(Articles article) {
+  void removeBookmark(Article article) {
     ArticleBox data = ArticleBox()
       ..author = article.author ?? ''
       ..title = article.title ?? ''

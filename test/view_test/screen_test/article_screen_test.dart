@@ -22,7 +22,7 @@ void main() {
     'test article screen',
     (tester) async {
       Source source = Source('id', 'name');
-      Articles article = Articles(
+      Article article = Article(
         source,
         'author',
         'title',

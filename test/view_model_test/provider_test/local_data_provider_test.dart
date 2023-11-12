@@ -10,7 +10,7 @@ import 'package:news_app/view_model/provider/local_data_provider.dart';
 import '../../test_sources/file_reader.dart';
 import 'local_data_provider_test.mocks.dart';
 
-@GenerateMocks([BookmarkArticleRepo])
+@GenerateMocks([BookmarkArticleRepoImp])
 void main() {
   final MockBookmarkArticleRepo repo = MockBookmarkArticleRepo();
   LocalDataProvider provider;
@@ -58,7 +58,7 @@ void main() {
   test("test bookmarkArticle()", () {
     final Map<String, dynamic> jsonData =
         json.decode(readFile('tArticles.json'));
-    Articles articles = Articles.fromJson(jsonData);
+    Article articles = Article.fromJson(jsonData);
     when(repo.getArticles(any)).thenAnswer((realInvocation) => []);
     provider = LocalDataProvider(repo);
     provider.bookmarkArticle(articles);
@@ -69,7 +69,7 @@ void main() {
   test("test removeBookmark()", () {
     final Map<String, dynamic> jsonData =
         json.decode(readFile('tArticles.json'));
-    Articles articles = Articles.fromJson(jsonData);
+    Article articles = Article.fromJson(jsonData);
       ArticleBox data = ArticleBox()
       ..author = articles.author ?? ''
       ..title = articles.title ?? ''

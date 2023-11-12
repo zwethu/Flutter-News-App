@@ -5,12 +5,12 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:news_app/model/entities/article.dart';
-import 'package:news_app/model/repository/online_article_repo.dart';
+import 'package:news_app/model/repository/online_article_repo_imp.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 import '../../../test_sources/file_reader.dart';
 import 'online_article_bloc_test.mocks.dart';
 
-@GenerateMocks([OnlineArticleRepo])
+@GenerateMocks([OnlineArticleRepoImp])
 void main() {
   group(
     'test OnlineArticleBLoc - ',
@@ -37,7 +37,7 @@ void main() {
         setUp: () {
           when(repo.getArticles(any)).thenAnswer(
             (_) async => [
-              Articles.fromJson(
+              Article.fromJson(
                 json.decode(
                   readFile('tArticles.json'),
                 ),

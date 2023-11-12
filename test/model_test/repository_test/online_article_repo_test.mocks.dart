@@ -26,7 +26,7 @@ class _FakeClient_0 extends _i1.SmartFake implements _i2.Client {
       : super(parent, parentInvocation);
 }
 
-class _FakeArticle_1 extends _i1.SmartFake implements _i3.Article {
+class _FakeArticle_1 extends _i1.SmartFake implements _i3.ArticleResponse {
   _FakeArticle_1(Object parent, Invocation parentInvocation)
       : super(parent, parentInvocation);
 }
@@ -44,9 +44,9 @@ class MockNewsApiService extends _i1.Mock implements _i4.NewsApiService {
           returnValue: _FakeClient_0(this, Invocation.getter(#client)))
       as _i2.Client);
   @override
-  _i5.Future<_i3.Article> fetchArticle(String? topic) => (super.noSuchMethod(
+  _i5.Future<_i3.ArticleResponse> fetchArticle(String? topic) => (super.noSuchMethod(
           Invocation.method(#fetchArticle, [topic]),
-          returnValue: _i5.Future<_i3.Article>.value(
+          returnValue: _i5.Future<_i3.ArticleResponse>.value(
               _FakeArticle_1(this, Invocation.method(#fetchArticle, [topic]))))
-      as _i5.Future<_i3.Article>);
+      as _i5.Future<_i3.ArticleResponse>);
 }

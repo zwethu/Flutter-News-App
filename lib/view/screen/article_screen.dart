@@ -12,7 +12,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../widget/button_back.dart';
 
 class ArticleScreen extends StatefulWidget {
-  final Articles article; // article is required to show data on UI
+  final Article article; // article is required to show data on UI
   const ArticleScreen({Key? key, required this.article}) : super(key: key);
 
   @override
@@ -222,7 +222,7 @@ class TitleWidget extends StatelessWidget {
 
 // custom appbar with backbutton and bookmark button
 class CustomAppbar extends StatelessWidget {
-  final Articles article;
+  final Article article;
   const CustomAppbar({
     Key? key,
     required this.article,
@@ -249,7 +249,7 @@ class CustomAppbar extends StatelessWidget {
 }
 
 class BookmarkButton extends StatelessWidget {
-  final Articles article;
+  final Article article;
   const BookmarkButton({
     Key? key,
     required this.article,

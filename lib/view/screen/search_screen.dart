@@ -13,7 +13,7 @@ import 'package:news_app/view_model/provider/input_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
 
-import '../../model/repository/online_article_repo.dart';
+import '../../model/repository/online_article_repo_imp.dart';
 import '../../model/service/news_api_service.dart';
 import '../../view_model/bloc/online_article_bloc/online_article_bloc.dart';
 
@@ -26,13 +26,13 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   late NewsApiService service;
-  late OnlineArticleRepo repo;
+  late OnlineArticleRepoImp repo;
   @override
   void initState() {
     super.initState();
     http.Client client = http.Client();
     service = NewsApiService(client);
-    repo = OnlineArticleRepo(service);
+    repo = OnlineArticleRepoImp(service);
     BlocProvider.of<OnlineArticleBloc>(context).add(
       const ResetOnlineArticleBlocEvent(),
     );
