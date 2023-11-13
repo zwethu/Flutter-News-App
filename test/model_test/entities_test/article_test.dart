@@ -15,7 +15,7 @@ void main() {
     });
   });
 
-  group('tesing for articles object - ', () {
+  group('testing for articles object - ', () {
     Source tSource = Source('CNN', 'CNN');
     Article tArticles = Article(tSource, 'author', 'title', 'description',
         'url', 'urlToImage', 'publishedAt', 'content');
