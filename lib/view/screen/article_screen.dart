@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:news_app/core/colors.dart';
 import 'package:news_app/core/constants.dart';
 import 'package:news_app/core/styles.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/view_model/provider/bookmark_condition_provider.dart';
 import 'package:news_app/view_model/provider/local_data_provider.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +31,7 @@ class _ArticleScreenState extends State<ArticleScreen> {
 
   void convertDateAndTime() {
     // publishedAt string is the mix of date and time. Example - 2022-09-07T15:58:32Z
-    // so nned to remove T and Z form the string
+    // so need to remove T and Z form the string
     String temp = widget.article.publishedAt!
         .replaceAll('Z', ' '); // replace T from string with space
     temp = temp.replaceAll('T', ' '); // replace Z from string with space
@@ -102,11 +102,12 @@ class LinkWidget extends StatelessWidget {
             style: titleStyle,
           ),
           TextButton(
-              onPressed: () => followLink(url),
-              child: const Text(
-                'Click Here',
-                style: normalStyle,
-              )),
+            onPressed: () => followLink(url),
+            child: const Text(
+              'Click Here',
+              style: normalStyle,
+            ),
+          ),
         ],
       ),
     );
@@ -267,7 +268,7 @@ class BookmarkButton extends StatelessWidget {
             if (!provider.getBool) {
               dataProvider.bookmarkArticle(article);
               provider.changeBool();
-            }else if(provider.getBool){
+            } else if (provider.getBool) {
               dataProvider.removeBookmark(article);
               provider.changeBool();
             }

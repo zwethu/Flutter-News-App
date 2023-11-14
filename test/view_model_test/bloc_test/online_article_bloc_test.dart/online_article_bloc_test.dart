@@ -4,7 +4,7 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/model/repository/online_article_repo_imp.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 import '../../../test_sources/file_reader.dart';
@@ -15,7 +15,7 @@ void main() {
   group(
     'test OnlineArticleBLoc - ',
     () {
-      MockOnlineArticleRepo repo = MockOnlineArticleRepo();
+      MockOnlineArticleRepoImp repo = MockOnlineArticleRepoImp();
       blocTest(
         'return [] at initial state',
         build: () => OnlineArticleBloc(repo),

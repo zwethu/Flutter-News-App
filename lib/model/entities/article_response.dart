@@ -2,7 +2,7 @@
 
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-part 'article.g.dart';
+part 'article_response.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class ArticleResponse extends Equatable {
@@ -19,9 +19,9 @@ class ArticleResponse extends Equatable {
   List<Object?> get props => [status, totalResults, articles];
 
   factory ArticleResponse.fromJson(Map<String, dynamic> json) =>
-      _$ArticleFromJson(json);
+      _$ArticleResponseFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ArticleToJson(this);
+  Map<String, dynamic> toJson() => _$ArticleResponseToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)
@@ -59,9 +59,9 @@ class Article extends Equatable {
       ];
 
   factory Article.fromJson(Map<String, dynamic> json) =>
-      _$ArticlesFromJson(json);
+      _$ArticleFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ArticlesToJson(this);
+  Map<String, dynamic> toJson() => _$ArticleToJson(this);
 }
 
 @JsonSerializable(explicitToJson: true)

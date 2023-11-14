@@ -14,7 +14,7 @@
 import 'package:auto_route/auto_route.dart' as _i2;
 import 'package:flutter/material.dart' as _i3;
 
-import '../../model/entities/article.dart' as _i4;
+import '../../model/entities/article_response.dart' as _i4;
 import 'routes.dart' as _i1;
 
 class AppRouter extends _i2.RootStackRouter {
@@ -25,37 +25,63 @@ class AppRouter extends _i2.RootStackRouter {
   final Map<String, _i2.PageFactory> pagesMap = {
     SplashScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.SplashScreen());
+        routeData: routeData,
+        child: const _i1.SplashScreen(),
+      );
     },
     HomeScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.HomeScreen());
+        routeData: routeData,
+        child: const _i1.HomeScreen(),
+      );
     },
     ArticleScreen.name: (routeData) {
       final args = routeData.argsAs<ArticleScreenArgs>();
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData,
-          child: _i1.ArticleScreen(key: args.key, article: args.article));
+        routeData: routeData,
+        child: _i1.ArticleScreen(
+          key: args.key,
+          article: args.article,
+        ),
+      );
     },
     SearchScreen.name: (routeData) {
       return _i2.MaterialPageX<dynamic>(
-          routeData: routeData, child: const _i1.SearchScreen());
-    }
+        routeData: routeData,
+        child: const _i1.SearchScreen(),
+      );
+    },
   };
 
   @override
   List<_i2.RouteConfig> get routes => [
-        _i2.RouteConfig(SplashScreen.name, path: '/splash-screen'),
-        _i2.RouteConfig(HomeScreen.name, path: '/'),
-        _i2.RouteConfig(ArticleScreen.name, path: '/article-screen'),
-        _i2.RouteConfig(SearchScreen.name, path: '/search-screen')
+        _i2.RouteConfig(
+          SplashScreen.name,
+          path: '/splash-screen',
+        ),
+        _i2.RouteConfig(
+          HomeScreen.name,
+          path: '/',
+        ),
+        _i2.RouteConfig(
+          ArticleScreen.name,
+          path: '/article-screen',
+        ),
+        _i2.RouteConfig(
+          SearchScreen.name,
+          path: '/search-screen',
+        ),
       ];
 }
 
 /// generated route for
 /// [_i1.SplashScreen]
 class SplashScreen extends _i2.PageRouteInfo<void> {
-  const SplashScreen() : super(SplashScreen.name, path: '/splash-screen');
+  const SplashScreen()
+      : super(
+          SplashScreen.name,
+          path: '/splash-screen',
+        );
 
   static const String name = 'SplashScreen';
 }
@@ -63,7 +89,11 @@ class SplashScreen extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.HomeScreen]
 class HomeScreen extends _i2.PageRouteInfo<void> {
-  const HomeScreen() : super(HomeScreen.name, path: '/');
+  const HomeScreen()
+      : super(
+          HomeScreen.name,
+          path: '/',
+        );
 
   static const String name = 'HomeScreen';
 }
@@ -71,16 +101,26 @@ class HomeScreen extends _i2.PageRouteInfo<void> {
 /// generated route for
 /// [_i1.ArticleScreen]
 class ArticleScreen extends _i2.PageRouteInfo<ArticleScreenArgs> {
-  ArticleScreen({_i3.Key? key, required _i4.Article article})
-      : super(ArticleScreen.name,
-            path: '/article-screen',
-            args: ArticleScreenArgs(key: key, article: article));
+  ArticleScreen({
+    _i3.Key? key,
+    required _i4.Article article,
+  }) : super(
+          ArticleScreen.name,
+          path: '/article-screen',
+          args: ArticleScreenArgs(
+            key: key,
+            article: article,
+          ),
+        );
 
   static const String name = 'ArticleScreen';
 }
 
 class ArticleScreenArgs {
-  const ArticleScreenArgs({this.key, required this.article});
+  const ArticleScreenArgs({
+    this.key,
+    required this.article,
+  });
 
   final _i3.Key? key;
 
@@ -95,7 +135,11 @@ class ArticleScreenArgs {
 /// generated route for
 /// [_i1.SearchScreen]
 class SearchScreen extends _i2.PageRouteInfo<void> {
-  const SearchScreen() : super(SearchScreen.name, path: '/search-screen');
+  const SearchScreen()
+      : super(
+          SearchScreen.name,
+          path: '/search-screen',
+        );
 
   static const String name = 'SearchScreen';
 }

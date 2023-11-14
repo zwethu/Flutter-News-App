@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:news_app/core/constants.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/view/route/router.gr.dart';
 import 'package:news_app/core/styles.dart';
 import 'package:news_app/view/widget/author_text.dart';

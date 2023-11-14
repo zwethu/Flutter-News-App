@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/view/widget/news_list.dart';
 import 'package:news_app/view_model/bloc/online_article_bloc/online_article_bloc.dart';
 

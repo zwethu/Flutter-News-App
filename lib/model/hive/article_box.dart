@@ -4,17 +4,17 @@ part 'article_box.g.dart';
 @HiveType(typeId: 1)
 class ArticleBox extends HiveObject {
   @HiveField(1)
-  late String author;
+  String? author;
   @HiveField(2)
-  late String title;
+  String? title;
   @HiveField(3)
-  late String description;
+  String? description;
   @HiveField(4)
-  late String url;
+  String? url;
   @HiveField(5)
-  late String urlToImage;
+  String? urlToImage;
   @HiveField(6)
-  late String publishedAt;
+  String? publishedAt;
   @HiveField(7)
-  late String content;
+  String? content;
 }

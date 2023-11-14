@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/model/repository/online_article_repo_imp.dart';
 import 'package:news_app/model/service/news_api_service.dart';
 import '../../test_sources/file_reader.dart';

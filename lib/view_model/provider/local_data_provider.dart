@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/bookmark_article_repo.dart';
 

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/model/hive/article_box.dart';
 import 'package:news_app/model/repository/bookmark_article_repo.dart';
 import 'package:news_app/view_model/provider/local_data_provider.dart';
@@ -12,7 +12,7 @@ import 'local_data_provider_test.mocks.dart';
 
 @GenerateMocks([BookmarkArticleRepoImp])
 void main() {
-  final MockBookmarkArticleRepo repo = MockBookmarkArticleRepo();
+  final MockBookmarkArticleRepoImp repo = MockBookmarkArticleRepoImp();
   LocalDataProvider provider;
   ArticleBox data = ArticleBox()
     ..author = "author"

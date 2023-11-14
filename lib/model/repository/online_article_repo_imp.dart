@@ -1,4 +1,4 @@
-import 'package:news_app/model/entities/article.dart';
+import 'package:news_app/model/entities/article_response.dart';
 import 'package:news_app/model/repository/online_article_repo.dart';
 import 'package:news_app/model/service/news_api_service.dart';
 

@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'article.dart';
+part of 'article_response.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ArticleResponse _$ArticleFromJson(Map<String, dynamic> json) => ArticleResponse(
+ArticleResponse _$ArticleResponseFromJson(Map<String, dynamic> json) =>
+    ArticleResponse(
       json['status'] as String?,
       json['totalResults'] as int?,
       (json['articles'] as List<dynamic>)
@@ -15,13 +16,14 @@ ArticleResponse _$ArticleFromJson(Map<String, dynamic> json) => ArticleResponse(
           .toList(),
     );
 
-Map<String, dynamic> _$ArticleToJson(ArticleResponse instance) => <String, dynamic>{
+Map<String, dynamic> _$ArticleResponseToJson(ArticleResponse instance) =>
+    <String, dynamic>{
       'status': instance.status,
       'totalResults': instance.totalResults,
       'articles': instance.articles.map((e) => e?.toJson()).toList(),
     };
 
-Article _$ArticlesFromJson(Map<String, dynamic> json) => Article(
+Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
       json['source'] == null
           ? null
           : Source.fromJson(json['source'] as Map<String, dynamic>),
@@ -34,7 +36,7 @@ Article _$ArticlesFromJson(Map<String, dynamic> json) => Article(
       json['content'] as String?,
     );
 
-Map<String, dynamic> _$ArticlesToJson(Article instance) => <String, dynamic>{
+Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'source': instance.source?.toJson(),
       'author': instance.author,
       'title': instance.title,

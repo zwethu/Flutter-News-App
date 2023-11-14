@@ -17,13 +17,13 @@ class ArticleBoxAdapter extends TypeAdapter<ArticleBox> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return ArticleBox()
-      ..author = fields[1] as String
-      ..title = fields[2] as String
-      ..description = fields[3] as String
-      ..url = fields[4] as String
-      ..urlToImage = fields[5] as String
-      ..publishedAt = fields[6] as String
-      ..content = fields[7] as String;
+      ..author = fields[1] as String?
+      ..title = fields[2] as String?
+      ..description = fields[3] as String?
+      ..url = fields[4] as String?
+      ..urlToImage = fields[5] as String?
+      ..publishedAt = fields[6] as String?
+      ..content = fields[7] as String?;
   }
 
   @override
